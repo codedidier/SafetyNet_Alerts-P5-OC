@@ -2,6 +2,8 @@ package com.safetynet.alerts.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 
 @Data
@@ -12,17 +14,23 @@ public class Medicalrecords {
     private String birthdate;
     private List<String> medications;
     private List<String> allergies;
+    @JsonIgnore
+    private int age;
+    @JsonIgnore
+    private String firstNameAndLastName;
 
     public Medicalrecords() {
     }
 
     public Medicalrecords(String lastName, String firstName, String birthdate, List<String> allergies,
-            List<String> medications, int age) {
+            List<String> medications, int age, String firstNameAndLastName) {
         this.lastName = lastName;
         this.firstName = firstName;
         this.birthdate = birthdate;
         this.allergies = allergies;
         this.medications = medications;
+        this.age = age;
+        this.firstNameAndLastName = firstNameAndLastName;
     }
 
     public String getLastName() {
@@ -45,6 +53,11 @@ public class Medicalrecords {
         return medications;
     }
 
+    public String getFirstNameAndLastName() {
+
+        return firstName + lastName;
+    }
+
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
@@ -65,6 +78,11 @@ public class Medicalrecords {
         this.medications = medications;
     }
 
+    public void setFirstNameAndLastName(String firstNameAndLastName) {
+
+        this.firstNameAndLastName = firstNameAndLastName;
+    }
+
     public void updatemedicalexceptFirstNameLastName(String birthdate, List<String> allergies,
             List<String> medications) {
         this.birthdate = birthdate;
@@ -74,13 +92,8 @@ public class Medicalrecords {
 
     @Override
     public String toString() {
-        return "{" +
-                "lastName='" + lastName + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", birthdate=" + birthdate +
-                ", allergies='" + allergies + '\'' +
-                ", medications='" + medications + '\'' +
-                '}';
+        return getFirstName() + ", " + getLastName() + ", " + getBirthdate() + ", " + getMedications() + ", "
+                + getAllergies() + "\n";
     }
 
 }

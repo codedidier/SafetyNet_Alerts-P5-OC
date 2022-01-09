@@ -1,6 +1,10 @@
 package com.safetynet.alerts.model;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 
@@ -10,13 +14,16 @@ public class Firestations {
     @Autowired
     private String address;
     private int station;
+    @JsonIgnore
+    private List<Persons> persons;
 
     public Firestations() {
     }
 
-    public Firestations(String address, int station) {
+    public Firestations(String address, int station, List<Persons> persons) {
         this.address = address;
         this.station = station;
+        this.persons = persons;
     }
 
     public String getAddress() {
@@ -35,11 +42,17 @@ public class Firestations {
         this.station = station;
     }
 
+    public List<Persons> getPersons() {
+        return persons;
+    }
+
+    public void setPersons(List<Persons> persons) {
+        this.persons = persons;
+    }
+
     @Override
     public String toString() {
-        return "Station { " + " address='" + address + '\'' +
-                ", station='" + station + '\'' +
-                '}';
+        return getAddress() + ", " + getStation() + "\n";
     }
 
 }
