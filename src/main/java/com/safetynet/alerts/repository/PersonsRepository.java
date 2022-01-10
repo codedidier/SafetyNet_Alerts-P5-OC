@@ -15,6 +15,7 @@ import lombok.Data;
 public class PersonsRepository implements PersonsRepositoryInterface {
 
     private List<Persons> persons;
+
     @Autowired
     private Database database;
 
@@ -25,5 +26,13 @@ public class PersonsRepository implements PersonsRepositoryInterface {
     public List<Persons> getListPersons() {
 
         return database.getPersons();
+    }
+
+    public List<Persons> getPersons() {
+        return persons;
+    }
+
+    public void setPersons(List<Persons> persons) {
+        this.persons = persons;
     }
 }

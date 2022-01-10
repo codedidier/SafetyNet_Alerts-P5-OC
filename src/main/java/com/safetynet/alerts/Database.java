@@ -42,7 +42,7 @@ public class Database {
         this.firestations = database.getFirestations();
 
         // TODO AJOUTER UN TROISIEME OBJECT AGREGATEUR QUI RECUPERE LES LES 2 PREMIERS
-        System.out.println("Database Object\n" + database);
+        System.out.println("lecture de l'object Database\n" + database);
     }
 
     public List<Firestations> getFirestations() {
