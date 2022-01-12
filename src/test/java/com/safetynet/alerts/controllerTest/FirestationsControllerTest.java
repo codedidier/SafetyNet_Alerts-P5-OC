@@ -15,10 +15,11 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 
+import com.safetynet.alerts.controller.FirestationsController;
 import com.safetynet.alerts.model.Firestations;
 import com.safetynet.alerts.service.FirestationsService;
 
-@WebMvcTest
+@WebMvcTest(FirestationsController.class)
 public class FirestationsControllerTest {
 
     @Autowired
