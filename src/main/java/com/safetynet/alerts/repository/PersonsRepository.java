@@ -8,9 +8,6 @@ import org.springframework.stereotype.Repository;
 import com.safetynet.alerts.Database;
 import com.safetynet.alerts.model.Persons;
 
-import lombok.Data;
-
-@Data
 @Repository
 public class PersonsRepository implements PersonsRepositoryInterface {
 
@@ -37,7 +34,6 @@ public class PersonsRepository implements PersonsRepositoryInterface {
         return addPersonList;
     }
 
-//TODO pourquoi l'annotation data ne fonctionne pas 
     public List<Persons> getPersons() {
         return persons;
     }
