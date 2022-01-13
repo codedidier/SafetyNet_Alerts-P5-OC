@@ -24,13 +24,22 @@ public class FirestationsService implements FirestationsServiceInterface {
         this.firestationsRepositoryInterface = firestationsRepositoryInterface;
     }
 
+//GET /firestations
     @Override
     public List<Firestations> getListFirestations() {
 
         logger.info("getListFirestations SUCCESS :");
 
         return firestationsRepositoryInterface.getListFirestations();
+    }
 
+//POST /firestation
+    @Override
+    public List<Firestations> addFirestationToList(Firestations firestations) {
+
+        logger.info("Firestations saved SUCCESS :" + firestations);
+        firestationsRepositoryInterface.addFirestationToList(firestations);
+        return firestationsRepositoryInterface.addFirestationToList(firestations);
     }
 
 }

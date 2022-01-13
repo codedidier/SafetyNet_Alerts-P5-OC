@@ -22,9 +22,18 @@ public class FirestationsRepository implements FirestationsRepositoryInterface {
         return database;
     }
 
+//GET /firestations
     @Override
     public List<Firestations> getListFirestations() {
 
         return database.getFirestations();
+    }
+
+//POST firestation
+    @Override
+    public List<Firestations> addFirestationToList(Firestations firestations) {
+        List<Firestations> addFirestations = database.getFirestations();
+        addFirestations.add(firestations);
+        return addFirestations;
     }
 }

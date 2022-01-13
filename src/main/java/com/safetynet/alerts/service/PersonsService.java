@@ -23,12 +23,14 @@ public class PersonsService implements PersonsServiceInterface {
         this.personsRepositoryInterface = personsRepositoryInterface;
     }
 
+//GET /persons
     @Override
     public List<Persons> getListPersons() {
 
         return personsRepositoryInterface.getListPersons();
     }
 
+//POST /person
     @Override
     public List<Persons> addNewPersonToList(Persons persons) {
 

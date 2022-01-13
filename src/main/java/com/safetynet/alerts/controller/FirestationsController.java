@@ -6,6 +6,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.safetynet.alerts.model.Firestations;
@@ -32,4 +34,16 @@ public class FirestationsController {
         return getFirestations;
     }
 
+    // Ajouter une firestation
+    @PostMapping("/firestation")
+    public List<Firestations> addFirestation(@RequestBody Firestations firestations) {
+
+        List<Firestations> addFirestation = firestationsServiceInterface.addFirestationToList(firestations);
+        if (addFirestation != null) {
+            logger.info("addFirestation POST request SUCCESS");
+        } else {
+            logger.error("addFirestation POST request FAILED");
+        }
+        return addFirestation;
+    }
 }

@@ -22,12 +22,14 @@ public class PersonsRepository implements PersonsRepositoryInterface {
     public PersonsRepository() {
     }
 
+//GET /persons
     @Override
     public List<Persons> getListPersons() {
 
         return database.getPersons();
     }
 
+//POST /person
     @Override
     public List<Persons> addNewPersonToList(Persons persons) {
         List<Persons> addPersonList = database.getPersons();
@@ -35,6 +37,7 @@ public class PersonsRepository implements PersonsRepositoryInterface {
         return addPersonList;
     }
 
+//TODO pourquoi l'annotation data ne fonctionne pas 
     public List<Persons> getPersons() {
         return persons;
     }

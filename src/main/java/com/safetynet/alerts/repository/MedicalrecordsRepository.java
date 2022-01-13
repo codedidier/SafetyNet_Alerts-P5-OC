@@ -20,12 +20,14 @@ public class MedicalrecordsRepository implements MedicalrecordsRepositoryInterfa
         this.database = database;
     }
 
+//GET /medicalrecords
     @Override
     public List<Medicalrecords> getListMedicalrecords() {
 
         return database.getMedicalrecords();
     }
 
+//Post /medicalRecord
     @Override
     public List<Medicalrecords> addMedicalrecordToList(Medicalrecords medicalrecords) {
 

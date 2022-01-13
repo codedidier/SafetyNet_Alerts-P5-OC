@@ -50,4 +50,21 @@ public class FirestationsServiceTest {
         assertThat(firestationsService.getListFirestations().toString(), containsString("8 MaRue"));
     }
 
+    @Test
+    @DisplayName("Test addFirestationToList ajout de l'adresse et d'un numero de station")
+    public void addFirestationToList() {
+
+        // GIVEN
+        Firestations firestations = new Firestations();
+        firestations.setAddress("8 MaRue");
+        firestations.setStation(8);
+        List<Firestations> firestationsList = new ArrayList<Firestations>();
+        firestationsList.add(firestations);
+
+        // WHEN
+        when(firestationsRepositoryInterface.addFirestationToList(firestations)).thenReturn(firestationsList);
+
+        // THEN
+        assertThat(firestationsService.addFirestationToList(firestations).toString(), containsString("8 MaRue"));
+    }
 }

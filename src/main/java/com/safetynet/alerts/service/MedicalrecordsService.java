@@ -24,20 +24,20 @@ public class MedicalrecordsService implements MedicalrecordsServiceInterface {
         this.medicalrecordsRepositoryInterface = medicalrecordsRepositoryInterface;
     }
 
+//GET /medicalrecords
     @Override
     public List<Medicalrecords> getListMedicalrecords() {
 
         logger.info("getListMedicalrecords SUCCESSFUL :");
         return medicalrecordsRepositoryInterface.getListMedicalrecords();
-
     }
 
+//POST /medicalRecord
     @Override
     public List<Medicalrecords> addMedicalrecordToList(Medicalrecords medicalrecords) {
 
         logger.info("addMedicalrecordToList SUCCESSFUL" + medicalrecords);
         return medicalrecordsRepositoryInterface.addMedicalrecordToList(medicalrecords);
-
     }
 
 }
