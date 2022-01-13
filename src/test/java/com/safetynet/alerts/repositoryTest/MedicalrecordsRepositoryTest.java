@@ -1,5 +1,6 @@
 package com.safetynet.alerts.repositoryTest;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.verify;
@@ -42,6 +43,24 @@ public class MedicalrecordsRepositoryTest {
         assertSame(medicalrecordsList, getListMedicalrecords);
         assertTrue(getListMedicalrecords.isEmpty());
         verify(database).getMedicalrecords();
+    }
+
+    @Test
+    @DisplayName("Test addMedicalrecord")
+    public void addMedicalrecordToListTest() {
+        // GIVEN
+        List<Medicalrecords> medicalrecordList = new ArrayList<Medicalrecords>();
+
+        // WHEN
+        when(database.getMedicalrecords()).thenReturn(medicalrecordList);
+        List<Medicalrecords> addMedicalrecordToListResult = medicalrecordsRepository
+                .addMedicalrecordToList(new Medicalrecords());
+        assertSame(medicalrecordList, addMedicalrecordToListResult);
+        assertEquals(1, addMedicalrecordToListResult.size());
+
+        // THEN
+        verify(database).getMedicalrecords();
+        assertSame(addMedicalrecordToListResult, medicalrecordsRepository.getListMedicalrecords());
     }
 
 }

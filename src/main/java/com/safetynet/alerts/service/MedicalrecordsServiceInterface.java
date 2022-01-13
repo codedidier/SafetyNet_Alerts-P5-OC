@@ -8,4 +8,6 @@ public interface MedicalrecordsServiceInterface {
 
     List<Medicalrecords> getListMedicalrecords();
 
+    List<Medicalrecords> addMedicalrecordToList(Medicalrecords medicalrecords);
+
 }

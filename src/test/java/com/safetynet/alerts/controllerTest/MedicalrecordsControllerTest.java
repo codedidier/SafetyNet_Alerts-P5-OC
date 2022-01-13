@@ -1,9 +1,11 @@
 package com.safetynet.alerts.controllerTest;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.ArrayList;
@@ -15,6 +17,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.safetynet.alerts.controller.MedicalrecordsController;
@@ -31,7 +34,7 @@ public class MedicalrecordsControllerTest {
     private MedicalrecordsService medicalrecordsService;
 
     @Test
-    @DisplayName("Test return status for getListMedicalrecords request")
+    @DisplayName("Test du statut de retour pour la requête getListMedicalrecords")
     public void getListMedicalrecords() throws Exception {
 
         // GIVEN
@@ -67,4 +70,22 @@ public class MedicalrecordsControllerTest {
         verify(medicalrecordsService, times(1)).getListMedicalrecords(); // verifie que firestationService est appelé
 
     }
+
+    @Test
+    @DisplayName("Test du statut de retour de la demande addMedicalrecordToList")
+    public void addMedicalrecordToList() throws Exception {
+        List<Medicalrecords> medicalrecordsList = new ArrayList<Medicalrecords>();
+
+        when(medicalrecordsService.addMedicalrecordToList(any(Medicalrecords.class))).thenReturn(medicalrecordsList);
+
+        // WHEN
+        mockMvc.perform(post("/medicalRecord").content(
+                "{ \"firstName\":\"monPrenom\", \"lastName\":\"monNom\", \"birthdate\":\"01/01/2000\", \"medications\":[\"doliprane 1000g\", \"aspirine 20mg\"], \"allergies\":[\"gluten\", \"chat\"] }")
+                .contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
+
+        // THEN
+        verify(medicalrecordsService, times(1)).addMedicalrecordToList(any(Medicalrecords.class));
+
+    }
+
 }

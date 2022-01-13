@@ -27,8 +27,16 @@ public class MedicalrecordsService implements MedicalrecordsServiceInterface {
     @Override
     public List<Medicalrecords> getListMedicalrecords() {
 
-        logger.info("getListMedicalrecords SUCCESS :");
+        logger.info("getListMedicalrecords SUCCESSFUL :");
         return medicalrecordsRepositoryInterface.getListMedicalrecords();
+
+    }
+
+    @Override
+    public List<Medicalrecords> addMedicalrecordToList(Medicalrecords medicalrecords) {
+
+        logger.info("addMedicalrecordToList SUCCESSFUL" + medicalrecords);
+        return medicalrecordsRepositoryInterface.addMedicalrecordToList(medicalrecords);
 
     }
 

@@ -58,4 +58,33 @@ public class MedicalrecordsServiceTest {
         // THEN
         assertThat(medicalrecordsService.getListMedicalrecords().toString(), containsString("monPrenom"));
     }
+
+    @Test
+    @DisplayName("Test saveMedicalrecordList ")
+    public void addMedicalrecordToList() {
+        // GIVEN
+        Medicalrecords medicalrecords = new Medicalrecords();
+        List<String> medications = new ArrayList<String>();
+        medications.add("doliprane 1000g");
+        medications.add("aspirine 20mg");
+        List<String> allergies = new ArrayList<String>();
+        allergies.add("gluten");
+        allergies.add("chat");
+        List<Medicalrecords> medicalrecordList = new ArrayList<Medicalrecords>();
+        medicalrecords.setFirstName("monPrenom");
+        medicalrecords.setLastName("monNom");
+        medicalrecords.setBirthdate("01/01/2000");
+        medicalrecords.setMedications(medications);
+        medicalrecords.setAllergies(allergies);
+        medicalrecordList.add(medicalrecords);
+
+        // WHEN
+        when(medicalrecordsRepositoryInterface.addMedicalrecordToList(medicalrecords)).thenReturn(medicalrecordList);
+
+        // THEN
+        assertThat(medicalrecordsService.addMedicalrecordToList(medicalrecords).toString(),
+                containsString("monPrenom"));
+
+    }
+
 }
