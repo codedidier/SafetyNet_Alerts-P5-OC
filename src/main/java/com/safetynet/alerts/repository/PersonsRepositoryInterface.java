@@ -8,4 +8,6 @@ public interface PersonsRepositoryInterface {
 
     List<Persons> getListPersons();
 
+    List<Persons> addNewPersonToList(Persons persons);
+
 }

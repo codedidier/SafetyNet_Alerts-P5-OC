@@ -8,4 +8,6 @@ public interface PersonsServiceInterface {
 
     List<Persons> getListPersons();
 
+    List<Persons> addNewPersonToList(Persons persons);
+
 }

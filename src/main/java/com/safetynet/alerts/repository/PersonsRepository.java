@@ -28,6 +28,13 @@ public class PersonsRepository implements PersonsRepositoryInterface {
         return database.getPersons();
     }
 
+    @Override
+    public List<Persons> addNewPersonToList(Persons persons) {
+        List<Persons> addPersonList = database.getPersons();
+        addPersonList.add(persons);
+        return addPersonList;
+    }
+
     public List<Persons> getPersons() {
         return persons;
     }

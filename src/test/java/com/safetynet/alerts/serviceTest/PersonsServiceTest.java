@@ -33,7 +33,7 @@ public class PersonsServiceTest {
     }
 
     @Test
-    @DisplayName("Test getListPersons with new persons to list")
+    @DisplayName("Test getListPersons")
     public void getListPersons() {
         // GIVEN
         List<Persons> listPersons = new ArrayList<>();
@@ -52,5 +52,29 @@ public class PersonsServiceTest {
 
         // THEN
         assertThat(personsService.getListPersons().toString(), containsString("monPrenom"));
+    }
+
+    @Test
+    @DisplayName("Test addNewPersonsToList avec une nouvelle personne")
+    public void addNewPersonToList() {
+        // GIVEN
+        List<Persons> listPersons = new ArrayList<Persons>();
+        Persons persons = new Persons();
+        persons.setFirstName("monPrenom");
+        persons.setLastName("monNom");
+        persons.setAddress("8 MaRue");
+        persons.setCity("MaVille");
+        persons.setZip("88888");
+        persons.setPhone("0600000000");
+        persons.setEmail("monemail@gmail.com");
+        listPersons.add(persons);
+
+        // WHEN
+        when(personsRepositoryInterface.getListPersons()).thenReturn(listPersons);
+        personsService.addNewPersonToList(persons);
+
+        // THEN
+        assertThat(personsService.addNewPersonToList(persons).toString(), containsString("monPrenom"));
+
     }
 }
