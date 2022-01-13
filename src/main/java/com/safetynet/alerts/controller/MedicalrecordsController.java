@@ -9,10 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.safetynet.alerts.model.Medicalrecords;
-import com.safetynet.alerts.service.MedicalrecordsServiceInterface;
 
 @RestController
-public class MedicalrecordsController {
+public class MedicalrecordsController<MedicalrecordsServiceInterface> {
 
     private static final Logger logger = LogManager.getLogger("MedicalrecordsController");
 
