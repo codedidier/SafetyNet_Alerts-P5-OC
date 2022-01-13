@@ -118,8 +118,7 @@
                 </dependencies>
                 <configuration>
                     <excludes>
-                        <exclude>**/*IT.java</exclude>
-                    </excludes>
+                       </excludes>
                 </configuration>
                 <executions>
                     <execution>
@@ -133,8 +132,7 @@
                                 <exclude>none</exclude>
                             </excludes>
                             <includes>
-                                <include>**/*IT.java</include>
-                            </includes>
+                                 </includes>
                         </configuration>
                     </execution>
                 </executions>
