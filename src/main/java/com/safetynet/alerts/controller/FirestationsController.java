@@ -35,7 +35,7 @@ public class FirestationsController {
     }
 
     // Ajouter une firestation
-    @PostMapping("/firestation")
+    @PostMapping(value = "/firestation")
     public List<Firestations> addFirestation(@RequestBody Firestations firestations) {
 
         List<Firestations> addFirestation = firestationsServiceInterface.addFirestationToList(firestations);
