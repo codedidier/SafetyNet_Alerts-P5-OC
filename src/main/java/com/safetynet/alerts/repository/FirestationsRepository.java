@@ -29,11 +29,34 @@ public class FirestationsRepository implements FirestationsRepositoryInterface {
         return database.getFirestations();
     }
 
-//POST firestation
+//POST /firestation
     @Override
     public List<Firestations> addFirestationToList(Firestations firestations) {
         List<Firestations> addFirestations = database.getFirestations();
         addFirestations.add(firestations);
         return addFirestations;
+    }
+
+//PUT /firestation
+    @Override
+    public Firestations updateFirestationToList(Firestations firestations) {
+
+        List<Firestations> updateFirestation = database.getFirestations();
+        for (Firestations update : updateFirestation) {
+            if (update.getAddress().equals(firestations.getAddress())) { ///
+                update.setStation(firestations.getStation());
+                return update;
+            }
+        }
+        return null;
+    }
+
+//DELETE /firestation
+    @Override
+    public void deleteFirestationToList(String address) {
+
+        List<Firestations> deleteFirestation = database.getFirestations();
+        deleteFirestation.removeIf(firestations -> firestations.getAddress().equals(address));
+
     }
 }

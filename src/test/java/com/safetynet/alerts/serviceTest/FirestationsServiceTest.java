@@ -67,4 +67,39 @@ public class FirestationsServiceTest {
         // THEN
         assertThat(firestationsService.addFirestationToList(firestations).toString(), containsString("8 MaRue"));
     }
+
+    @Test
+    @DisplayName("Test updatePersonToList mise àn jour d'une station")
+    public void updatePersonToList() {
+
+        // GIVEN
+        Firestations firestations = new Firestations();
+        firestations.setAddress("8 MaRue");
+        firestations.setStation(8);
+
+        // WHEN
+        when(firestationsRepositoryInterface.updateFirestationToList(firestations)).thenReturn(firestations);
+
+        // THEN
+        assertThat(firestationsService.updateFirestationToList(firestations).toString(), containsString("8 MaRue"));
+
+    }
+
+    @Test
+    @DisplayName("Test deleteFirestationToList avec une adresse")
+    public void deleteFirestationToList() {
+
+        // GIVEN
+        Firestations firestations = new Firestations();
+        firestations.setAddress("8 MaRue");
+        firestations.setStation(8);
+        firestationsService.addFirestationToList(firestations);
+
+        // WHEN
+        firestationsRepositoryInterface.deleteFirestationToList("8 MaRue");
+
+        // THEN
+        assertThat(firestationsService.getListFirestations().toString(), containsString(""));
+
+    }
 }

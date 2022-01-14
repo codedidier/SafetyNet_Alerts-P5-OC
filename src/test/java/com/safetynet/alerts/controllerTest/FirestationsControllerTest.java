@@ -4,8 +4,10 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.ArrayList;
@@ -70,6 +72,37 @@ public class FirestationsControllerTest {
 
         // THEN
         verify(firestationsService, times(1)).addFirestationToList(any(Firestations.class));
+
+    }
+
+    @Test
+    @DisplayName("Test de mise a jour de firestation updateFirestationToList")
+    public void updateFirestationToList() throws Exception {
+        // GIVEN
+        Firestations firestations = new Firestations();
+        firestations.setAddress("8 MaRue");
+        firestations.setStation(8);
+        when(firestationsService.updateFirestationToList(any(Firestations.class))).thenReturn(firestations);
+
+        // WHEN
+        mockMvc.perform(put("/firestation").content("{ \"address\":\"8 MaRue\", \"station\":\"8\" }")
+                .contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
+
+        // THEN
+        verify(firestationsService, times(1)).updateFirestationToList(any(Firestations.class));
+
+    }
+
+    @Test
+    @DisplayName("Test supprimer une firestation deleteFirestationToList")
+    public void deleteFirestationToList() throws Exception {
+        // GIVEN
+
+        // WHEN
+        mockMvc.perform(delete("/firestation/station")).andExpect(status().isOk());
+
+        // THEN
+        verify(firestationsService, times(1)).deleteFirestationToList(any(String.class));
 
     }
 }

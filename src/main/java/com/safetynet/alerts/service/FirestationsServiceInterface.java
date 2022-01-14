@@ -12,4 +12,10 @@ public interface FirestationsServiceInterface {
 //POST /firestation
     List<Firestations> addFirestationToList(Firestations firestations);
 
+//PUT /firestation
+    Firestations updateFirestationToList(Firestations firestations);
+
+//DELETE /firestation
+    List<Firestations> deleteFirestationToList(String address);
+
 }

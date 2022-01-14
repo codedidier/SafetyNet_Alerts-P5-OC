@@ -42,4 +42,20 @@ public class FirestationsService implements FirestationsServiceInterface {
         return firestationsRepositoryInterface.addFirestationToList(firestations);
     }
 
+//PUT /firestation
+    @Override
+    public Firestations updateFirestationToList(Firestations firestations) {
+
+        logger.info("updateFirestationToList rèussis" + firestations);
+        return firestationsRepositoryInterface.updateFirestationToList(firestations);
+    }
+
+//DELETE /firestation
+    @Override
+    public List<Firestations> deleteFirestationToList(String address) {
+
+        logger.info("findById rèussi :" + address);
+        firestationsRepositoryInterface.deleteFirestationToList(address);
+        return firestationsRepositoryInterface.getListFirestations();
+    }
 }

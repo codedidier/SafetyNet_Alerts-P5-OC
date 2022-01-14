@@ -11,4 +11,10 @@ public interface FirestationsRepositoryInterface {
 
 //POST /firestation
     List<Firestations> addFirestationToList(Firestations firestations);
+
+//PUT /firestation
+    Firestations updateFirestationToList(Firestations firestations);
+
+//DELETE /firestation
+    void deleteFirestationToList(String address);
 }
