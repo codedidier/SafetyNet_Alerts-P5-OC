@@ -12,4 +12,10 @@ public interface PersonsRepositoryInterface {
 //POST /person
     List<Persons> addNewPersonToList(Persons persons);
 
+//UPDATE /person
+    Persons updatePersonToList(String firstNameAndLastName, Persons persons);
+
+//DELETE /person
+    void deletePersonToList(String firstNameAndLastName);
+
 }

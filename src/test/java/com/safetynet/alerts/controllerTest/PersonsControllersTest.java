@@ -4,8 +4,10 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.ArrayList;
@@ -84,13 +86,49 @@ public class PersonsControllersTest {
         when(personsService.addNewPersonToList(any(Persons.class))).thenReturn(listPersons);
 
         // WHEN
-        mockMvc.perform(post("/person").content("{\"firstName\\\":\\\"monPrenom\\\", \\\"lastName\\\":\\\"monNom\\\","
-                + " \\\"address\\\":\\\"8 MaRue\\\", \\\"city\\\":\\\"MaVille\\\", \\\"zip\\\":\\\"88888\\\", \\\"phone\\\":\\\"0600000000\\\", \\\"email\\\":\\\"monemail@gmail.com\\\" }\")")
+        mockMvc.perform(post("/person").content("{\"firstName\":\"monPrenom\", \"lastName\":\"monNom\","
+                + " \"address\":\"8 MaRue\", \"city\":\"MaVille\", \"zip\":\\\"88888\", \"phone\":\"0600000000\", \"email\":\"monemail@gmail.com\" }\")")
                 .contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk()); // Execute la commande POST
                                                                                       // /person
 
         // THEN
         verify(personsService, times(1)).addNewPersonToList(any(Persons.class));
 
+    }
+
+    @Test
+    @DisplayName("Test pour la mise a jour d'une personne updatePerson")
+    public void updatePerson() throws Exception {
+
+//GIVEN
+        Persons persons = new Persons();
+        persons.setFirstName("monPrenom");
+        persons.setLastName("monNom");
+        persons.setAddress("8 MaRue");
+        persons.setCity("MaVille");
+        persons.setZip("88888");
+        persons.setPhone("0600000000");
+        persons.setEmail("monemail@gmail.com");
+        when(personsService.updatePersonToList(any(String.class), (any(Persons.class)))).thenReturn(persons);
+
+        // WHEN
+        mockMvc.perform(put("/person/monPrenommonNom").content("{\"firstName\":\"nouveauPrenom\"}")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+
+        // THEN
+        verify(personsService, times(1)).updatePersonToList(any(String.class), (any(Persons.class)));
+    }
+
+    @Test
+    @DisplayName("Test pour la suppression d'une personne deletePersonToList")
+    public void deletePersonToList() throws Exception {
+        // GIVEN
+
+        // WHEN
+        mockMvc.perform(delete("/person/JohnBoyd", 1)).andExpect(status().isOk());
+
+        // THEN
+        verify(personsService, times(1)).deletePersonToList(any(String.class));
     }
 }

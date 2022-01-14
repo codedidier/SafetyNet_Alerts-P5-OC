@@ -1,6 +1,7 @@
 package com.safetynet.alerts.repositoryTest;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.verify;
@@ -60,6 +61,38 @@ public class PersonsRepositoryTest {
         // THEN
         verify(database).getPersons();
         assertSame(addNewPersonToList, personsRepository.getListPersons());
+    }
+
+    @Test
+    @DisplayName("Test updatePersonToListTest")
+    public void updatePersonToListTest() {
+        // GIVEN
+        List<Persons> personsList = new ArrayList<Persons>();
+
+        // WHEN
+        when(database.getPersons()).thenReturn(personsList);
+        assertNull(personsRepository.updatePersonToList("monPrenom", new Persons()));
+
+        // THEN
+        verify(database).getPersons();
+        assertSame(personsList, personsRepository.getListPersons());
+    }
+
+    @Test
+    @DisplayName("Test deletePersonToListTest")
+    public void deletePersonToListTest() {
+        // GIVEN
+        List<Persons> personsList = new ArrayList<Persons>();
+
+        // WHEN
+        when(database.getPersons()).thenReturn(personsList);
+        personsRepository.deletePersonToList("monPrenom");
+        verify(database).getPersons();
+        List<Persons> getListPersonsResult = personsRepository.getListPersons();
+
+        // THEN
+        assertSame(personsList, getListPersonsResult);
+        assertTrue(getListPersonsResult.isEmpty());
     }
 
 }

@@ -35,6 +35,7 @@ public class PersonsServiceTest {
     @Test
     @DisplayName("Test getListPersons")
     public void getListPersons() {
+
         // GIVEN
         List<Persons> listPersons = new ArrayList<>();
         Persons persons = new Persons();
@@ -57,6 +58,7 @@ public class PersonsServiceTest {
     @Test
     @DisplayName("Test addNewPersonsToList avec une nouvelle personne")
     public void addNewPersonToList() {
+
         // GIVEN
         List<Persons> listPersons = new ArrayList<Persons>();
         Persons persons = new Persons();
@@ -75,6 +77,51 @@ public class PersonsServiceTest {
 
         // THEN
         assertThat(personsService.addNewPersonToList(persons).toString(), containsString("monPrenom"));
+
+    }
+
+    @Test
+    @DisplayName("Test updatePersonToList mettre à jour une personne")
+    public void updatePersonToList() {
+
+        // GIVEN
+        Persons persons = new Persons();
+        persons.setFirstName("monPrenom");
+        persons.setLastName("monNom");
+        persons.setAddress("8 MaRue");
+        persons.setCity("MaVille");
+        persons.setZip("88888");
+        persons.setPhone("0600000000");
+        persons.setEmail("monemail@gmail.com");
+
+        // WHEN
+        when(personsRepositoryInterface.updatePersonToList("monPrenommonNom", persons)).thenReturn(persons);
+
+        // THEN
+        assertThat(personsService.updatePersonToList("monPrenommonNom", persons).toString(),
+                containsString("monPrenom"));
+
+    }
+
+    @Test
+    @DisplayName("Test deletePersonToList supprimer une personne")
+    public void deletePersonToList() {
+
+        // GIVEN
+        Persons persons = new Persons();
+        persons.setFirstName("monPrenom");
+        persons.setLastName("monNom");
+        persons.setAddress("8 MaRue");
+        persons.setCity("MaVille");
+        persons.setZip("88888");
+        persons.setPhone("0600000000");
+        persons.setEmail("monemail@gmail.com");
+        personsService.addNewPersonToList(persons);
+
+        // WHEN
+
+        // THEN
+        assertThat(personsService.deletePersonToList("monPrenommonNom").toString(), containsString(""));
 
     }
 }

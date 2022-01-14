@@ -41,4 +41,33 @@ public class PersonsRepository implements PersonsRepositoryInterface {
     public void setPersons(List<Persons> persons) {
         this.persons = persons;
     }
+
+//UPDATE /person
+    @Override
+    public Persons updatePersonToList(String firstNameAndLastName, Persons persons) {
+
+        List<Persons> personUpdate;
+
+        personUpdate = database.getPersons();
+        for (Persons update : personUpdate) {
+            if (update.getFirstNameAndLastName().equals(firstNameAndLastName)) {
+                update.setAddress(persons.getAddress());
+                update.setCity(persons.getCity());
+                update.setZip(persons.getZip());
+                update.setPhone(persons.getPhone());
+                update.setEmail(persons.getEmail());
+                return update;
+            }
+        }
+        return null;
+    }
+
+//DELETE /person
+    @Override
+    public void deletePersonToList(String firstNameAndLastName) {
+
+        List<Persons> deletePerson = database.getPersons();
+        deletePerson.removeIf(persons -> persons.getFirstNameAndLastName().equals(firstNameAndLastName));
+
+    }
 }

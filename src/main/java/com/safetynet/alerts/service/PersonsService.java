@@ -38,4 +38,22 @@ public class PersonsService implements PersonsServiceInterface {
         personsRepositoryInterface.addNewPersonToList(persons);
         return personsRepositoryInterface.getListPersons();
     }
+
+//UPDATE /person
+    @Override
+    public Persons updatePersonToList(String firstNameAndLastName, Persons persons) {
+
+        logger.info("updatePersonToList reussis :" + persons);
+        return personsRepositoryInterface.updatePersonToList(firstNameAndLastName, persons);
+    }
+
+//DELETE //person
+    @Override
+    public List<Persons> deletePersonToList(String firstNameAndLastName) {
+
+        logger.info("deletePersonToList reussis :" + firstNameAndLastName);
+        personsRepositoryInterface.deletePersonToList(firstNameAndLastName);
+        return personsRepositoryInterface.getListPersons();
+
+    }
 }
