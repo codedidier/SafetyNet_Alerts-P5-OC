@@ -1,11 +1,13 @@
 package com.safetynet.alerts.repositoryTest;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,6 +63,38 @@ public class MedicalrecordsRepositoryTest {
         // THEN
         verify(database).getMedicalrecords();
         assertSame(addMedicalrecordToListResult, medicalrecordsRepository.getListMedicalrecords());
+    }
+
+    @Test
+    @DisplayName("Test UpdateMedicalRecordToList")
+    public void updateMedicalrecordToListTest() throws ParseException {
+        // GIVEN
+        List<Medicalrecords> medicalrecordList = new ArrayList<Medicalrecords>();
+
+        // WHEN
+        when(database.getMedicalrecords()).thenReturn(medicalrecordList);
+        assertNull(medicalrecordsRepository.updateMedicalrecordToList("monPrenommonNom", new Medicalrecords()));
+
+        // THEN
+        verify(database).getMedicalrecords();
+        assertSame(medicalrecordList, medicalrecordsRepository.getListMedicalrecords());
+    }
+
+    @Test
+    @DisplayName("Test DeleteMEdicalrecordList")
+    public void deleteMedicalrecordListTest() {
+        // GIVEN
+        List<Medicalrecords> medicalrecordList = new ArrayList<Medicalrecords>();
+
+        // WHEN
+        when(database.getMedicalrecords()).thenReturn(medicalrecordList);
+        medicalrecordsRepository.deleteMedicalrecordToList("monPrenommonNom");
+
+        // THEN
+        verify(database).getMedicalrecords();
+        List<Medicalrecords> getListMedicalrecords = medicalrecordsRepository.getListMedicalrecords();
+        assertSame(medicalrecordList, getListMedicalrecords);
+        assertTrue(getListMedicalrecords.isEmpty());
     }
 
 }

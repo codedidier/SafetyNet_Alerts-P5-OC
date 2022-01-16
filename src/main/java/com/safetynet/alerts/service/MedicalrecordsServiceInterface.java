@@ -12,4 +12,9 @@ public interface MedicalrecordsServiceInterface {
 //POST /medicalRecord
     List<Medicalrecords> addMedicalrecordToList(Medicalrecords medicalrecords);
 
+//PUT /medicalRecord
+    Medicalrecords updateMedicalrecordToList(String firstNameAndLastName, Medicalrecords medicalrecords);
+
+//delete medicalRecord    
+    void deleteMedicalrecordToList(String firstNameAndLastName);
 }

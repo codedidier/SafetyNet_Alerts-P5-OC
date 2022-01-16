@@ -1,6 +1,5 @@
 package com.safetynet.alerts.repository;
 
-import java.text.ParseException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,19 +35,28 @@ public class MedicalrecordsRepository implements MedicalrecordsRepositoryInterfa
         return saveMedical;
     }
 
+//PUT /medicalRecord
     @Override
-    public Medicalrecords addMedicalrecordToList(String firstNameAndLastName, Medicalrecords medicalrecords)
-            throws ParseException {
+    public Medicalrecords updateMedicalrecordToList(String firstNameAndLastName, Medicalrecords medicalrecords) {
 
-        for (Medicalrecords addMedical : database.getMedicalrecords()) {
-            if (addMedical.getFirstNameAndLastName().equals(firstNameAndLastName)) {
-                addMedical.setBirthdate(medicalrecords.getBirthdate());
-                addMedical.setMedications(medicalrecords.getMedications());
-                addMedical.setAllergies(medicalrecords.getAllergies());
-                return addMedical;
+        for (Medicalrecords updateMedical : database.getMedicalrecords()) {
+            if (updateMedical.getFirstNameAndLastName().equals(firstNameAndLastName)) {
+                updateMedical.setBirthdate(medicalrecords.getBirthdate());
+                updateMedical.setMedications(medicalrecords.getMedications());
+                updateMedical.setAllergies(medicalrecords.getAllergies());
+                return updateMedical;
             }
         }
         return null;
+    }
+
+//DELETE /medicalRecord
+    @Override
+    public void deleteMedicalrecordToList(String firstNameAndLastName) {
+
+        database.getMedicalrecords()
+                .removeIf(medicalrecord -> medicalrecord.getFirstNameAndLastName().equals(firstNameAndLastName));
+
     }
 
 }

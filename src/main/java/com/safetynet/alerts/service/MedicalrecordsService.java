@@ -40,4 +40,22 @@ public class MedicalrecordsService implements MedicalrecordsServiceInterface {
         return medicalrecordsRepositoryInterface.addMedicalrecordToList(medicalrecords);
     }
 
+//PUT /medicalRecord
+
+    @Override
+    public Medicalrecords updateMedicalrecordToList(String firstNameAndLastName, Medicalrecords medicalrecords) {
+
+        logger.info("updateMedicalrecordList SUCCESS :" + medicalrecords);
+        return medicalrecordsRepositoryInterface.updateMedicalrecordToList(firstNameAndLastName, medicalrecords);
+    }
+
+//DELETE /medicalRecord
+    @Override
+    public void deleteMedicalrecordToList(String firstNameAndLastName) {
+
+        List<Medicalrecords> deleteMedical = medicalrecordsRepositoryInterface.getListMedicalrecords();
+        deleteMedical.removeIf(medicalrecord -> medicalrecord.getFirstNameAndLastName().equals(firstNameAndLastName));
+
+    }
+
 }
