@@ -17,4 +17,9 @@ public interface MedicalrecordsRepositoryInterface {
 
 //DELETE medicalRecord
     void deleteMedicalrecordToList(String firstNameAndLastName);
+
+//Recherche par prènom et nom pour les URLS
+    Medicalrecords getByFirstNameAndLastName(String firstName, String lastName);
+
+    Medicalrecords getByFirstName(String firstName);
 }

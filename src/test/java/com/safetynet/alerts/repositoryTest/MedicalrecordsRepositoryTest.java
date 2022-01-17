@@ -97,4 +97,33 @@ public class MedicalrecordsRepositoryTest {
         assertTrue(getListMedicalrecords.isEmpty());
     }
 
+    @Test
+    @DisplayName("Test getByFirstName")
+    public void getByFirstNameTest() {
+        // GIVEN
+        List<Medicalrecords> medicalrecordList = new ArrayList<Medicalrecords>();
+
+        // WHEN
+        when(database.getMedicalrecords()).thenReturn(medicalrecordList);
+        assertNull(medicalrecordsRepository.getByFirstName("monPrenom"));
+
+        // THGEN
+        verify(database).getMedicalrecords();
+        assertSame(medicalrecordList, medicalrecordsRepository.getListMedicalrecords());
+    }
+
+    @Test
+    @DisplayName("Test getByFirstNameAndLAstName")
+    public void getByFirstNameAndLastNameTest() {
+        // GIVEN
+        List<Medicalrecords> medicalrecordList = new ArrayList<Medicalrecords>();
+
+        // WHEN
+        when(database.getMedicalrecords()).thenReturn(medicalrecordList);
+        assertNull(medicalrecordsRepository.getByFirstNameAndLastName("monPrenom", "monNom"));
+
+        // THEN
+        verify(database).getMedicalrecords();
+        assertSame(medicalrecordList, medicalrecordsRepository.getListMedicalrecords());
+    }
 }

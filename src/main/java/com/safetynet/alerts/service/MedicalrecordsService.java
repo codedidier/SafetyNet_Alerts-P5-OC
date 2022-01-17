@@ -45,7 +45,7 @@ public class MedicalrecordsService implements MedicalrecordsServiceInterface {
     @Override
     public Medicalrecords updateMedicalrecordToList(String firstNameAndLastName, Medicalrecords medicalrecords) {
 
-        logger.info("updateMedicalrecordList SUCCESS :" + medicalrecords);
+        logger.info("updateMedicalrecordToList SUCCESS :" + medicalrecords);
         return medicalrecordsRepositoryInterface.updateMedicalrecordToList(firstNameAndLastName, medicalrecords);
     }
 
@@ -54,8 +54,22 @@ public class MedicalrecordsService implements MedicalrecordsServiceInterface {
     public void deleteMedicalrecordToList(String firstNameAndLastName) {
 
         List<Medicalrecords> deleteMedical = medicalrecordsRepositoryInterface.getListMedicalrecords();
-        deleteMedical.removeIf(medicalrecord -> medicalrecord.getFirstNameAndLastName().equals(firstNameAndLastName));
-
+        deleteMedical.removeIf(medicalrecords -> medicalrecords.getFirstNameAndLastName().equals(firstNameAndLastName));
     }
 
+//recherche par prenom et nom pour les URLS
+    @Override
+    public Medicalrecords getByFirstNameAndLastName(String firstName, String lastName) {
+
+        logger.info("getByFirstNameAndLastName SUCCESS :" + (firstName + lastName));
+        return medicalrecordsRepositoryInterface.getByFirstNameAndLastName(firstName, lastName);
+    }
+
+    @Override
+    public Medicalrecords getByFirstName(String firstName) {
+
+        logger.info("getByLastName SUCCESS :" + firstName);
+        return medicalrecordsRepositoryInterface.getByFirstName(firstName);
+
+    }
 }

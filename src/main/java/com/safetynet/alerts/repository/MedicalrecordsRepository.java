@@ -55,8 +55,29 @@ public class MedicalrecordsRepository implements MedicalrecordsRepositoryInterfa
     public void deleteMedicalrecordToList(String firstNameAndLastName) {
 
         database.getMedicalrecords()
-                .removeIf(medicalrecord -> medicalrecord.getFirstNameAndLastName().equals(firstNameAndLastName));
-
+                .removeIf(medicalrecords -> medicalrecords.getFirstNameAndLastName().equals(firstNameAndLastName));
     }
 
+//recherche par prenom et nom
+    @Override
+    public Medicalrecords getByFirstName(String firstName) {
+
+        for (Medicalrecords medicalRecords : database.getMedicalrecords()) {
+            if (medicalRecords.getFirstName().equals(firstName)) {
+                return medicalRecords;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public Medicalrecords getByFirstNameAndLastName(String firstName, String lastName) {
+
+        for (Medicalrecords medicalRecords : database.getMedicalrecords()) {
+            if (medicalRecords.getFirstName().equals(firstName) && (medicalRecords.getLastName().equals(lastName))) {
+                return medicalRecords;
+            }
+        }
+        return null;
+    }
 }

@@ -1,5 +1,6 @@
 package com.safetynet.alerts.repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,6 +69,59 @@ public class PersonsRepository implements PersonsRepositoryInterface {
 
         List<Persons> deletePerson = database.getPersons();
         deletePerson.removeIf(persons -> persons.getFirstNameAndLastName().equals(firstNameAndLastName));
+    }
+
+//Recherche par adresse pour les URLS
+    @Override
+    public List<Persons> getByAddress(String address) {
+
+        List<Persons> listPersons = new ArrayList<Persons>();
+        for (Persons persons : database.getPersons()) {
+            if (persons.getAddress().equals(address)) {
+                listPersons.add(persons);
+            }
+        }
+        return listPersons;
+    }
+
+//Recherche par nom pour les URLS
+    @Override
+    public List<Persons> getByLastName(String lastName) {
+
+        List<Persons> listPersons = new ArrayList<Persons>();
+        for (Persons persons : database.getPersons()) {
+            if (persons.getLastName().equals(lastName)) {
+                listPersons.add(persons);
+            }
+        }
+        return listPersons;
 
     }
+
+//Recherche par prenom et nom pour les URLS
+    @Override
+    public List<Persons> getByFirstNameAndLastName(String firstName, String lastName) {
+
+        List<Persons> listPersons = new ArrayList<Persons>();
+        for (Persons persons : database.getPersons()) {
+            if (persons.getFirstName().equals(firstName) && (persons.getLastName().equals(lastName))) {
+                listPersons.add(persons);
+            }
+        }
+        return listPersons;
+    }
+
+//Recherche par EMAIL ville pour les URLS
+    @Override
+    public List<Persons> getEmailByCity(String city) {
+
+        List<Persons> listPersons = new ArrayList<>();
+        for (Persons persons : database.getPersons()) {
+            if (persons.getCity().equals(city)) {
+                listPersons.add(persons);
+            }
+        }
+        return listPersons;
+    }
+
 }

@@ -118,4 +118,56 @@ public class MedicalrecordsServiceTest {
 
     }
 
+    @Test
+    @DisplayName("Test getByFirstName")
+    public void getByFirstName() {
+
+        // GIVEN
+        Medicalrecords medicalrecords = new Medicalrecords();
+        List<String> medications = new ArrayList<String>();
+        medications.add("doliprane 1000g");
+        medications.add("aspirine 20mg");
+        List<String> allergies = new ArrayList<String>();
+        allergies.add("gluten");
+        allergies.add("chat");
+        medicalrecords.setFirstName("monPrenom");
+        medicalrecords.setLastName("monNom");
+        medicalrecords.setBirthdate("01/01/2000");
+        medicalrecords.setMedications(medications);
+        medicalrecords.setAllergies(allergies);
+
+        // WHEN
+        when(medicalrecordsRepositoryInterface.getByFirstName("monPrenom")).thenReturn(medicalrecords);
+
+        // THEN
+        assertThat(medicalrecordsRepositoryInterface.getByFirstName("monPrenom").toString(),
+                containsString("monPrenom"));
+
+    }
+
+    @Test
+    @DisplayName("Test getByFirstNameAndLastName")
+    public void getByFirstNameAndLastName() {
+        // GIVEN
+        Medicalrecords medicalrecords = new Medicalrecords();
+        List<String> medications = new ArrayList<String>();
+        medications.add("doliprane 1000g");
+        medications.add("aspirine 20mg");
+        List<String> allergies = new ArrayList<String>();
+        allergies.add("gluten");
+        allergies.add("chat");
+        medicalrecords.setFirstName("monPrenom");
+        medicalrecords.setLastName("monNom");
+        medicalrecords.setBirthdate("01/01/2000");
+        medicalrecords.setMedications(medications);
+        medicalrecords.setAllergies(allergies);
+        // WHEN
+        when(medicalrecordsRepositoryInterface.getByFirstNameAndLastName("monPrenom", "monNom"))
+                .thenReturn(medicalrecords);
+
+        // THEN
+        assertThat(medicalrecordsService.getByFirstNameAndLastName("monPrenom", "monNom")
+                .toString(), containsString("monNom"));
+
+    }
 }

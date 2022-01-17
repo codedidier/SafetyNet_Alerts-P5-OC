@@ -17,4 +17,16 @@ public interface PersonsServiceInterface {
 
 //DELETE /person
     List<Persons> deletePersonToList(String firstNameAndLastName);
+
+//Recherche Address pour les URLS
+    List<Persons> getByAddress(String address);
+
+//Recherche LastName pour les URLS
+    List<Persons> getByLastName(String lastName);
+
+//Recherche FirstNameAndLastName pour les URLS
+    List<Persons> getByFirstNameAndLastName(String firstName, String lastName);
+
+//Recherche EmailByCity pour les URLS
+    List<Persons> getEmailByCity(String city);
 }

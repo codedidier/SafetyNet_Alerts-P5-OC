@@ -15,6 +15,11 @@ public interface MedicalrecordsServiceInterface {
 //PUT /medicalRecord
     Medicalrecords updateMedicalrecordToList(String firstNameAndLastName, Medicalrecords medicalrecords);
 
-//delete medicalRecord    
+//delete medicalRecord
     void deleteMedicalrecordToList(String firstNameAndLastName);
+
+//recherche par prenom et nom pour les URLS
+    Medicalrecords getByFirstName(String firstName);
+
+    Medicalrecords getByFirstNameAndLastName(String firstName, String lastName);
 }

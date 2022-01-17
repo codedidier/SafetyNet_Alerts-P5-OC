@@ -124,4 +124,71 @@ public class PersonsServiceTest {
         assertThat(personsService.deletePersonToList("monPrenommonNom").toString(), containsString(""));
 
     }
+
+    @Test
+    @DisplayName("Test getByAddress")
+    public void getByAddress() {
+        // GIVEN
+        Persons persons = new Persons();
+        persons.setFirstName("monPrenom");
+        persons.setLastName("monNom");
+        persons.setAddress("8 MaRue");
+        persons.setCity("MaVille");
+        persons.setZip("88888");
+        persons.setPhone("0600000000");
+        persons.setEmail("monemail@gmail.com");
+        List<Persons> listPersons = new ArrayList<Persons>();
+        listPersons.add(persons);
+        // WHEN
+        when(personsRepositoryInterface.getByAddress("8 MaRue")).thenReturn(listPersons);
+
+        // THEN
+        assertThat(personsService.getByAddress("8 MaRue").toString(), containsString("monPrenom"));
+    }
+
+    @Test
+    @DisplayName("Test  getByLastName")
+    public void getByLastName() {
+        // GIVEN
+        Persons persons = new Persons();
+        persons.setFirstName("monPrenom");
+        persons.setLastName("monNom");
+        persons.setAddress("8 MaRue");
+        persons.setCity("MaVille");
+        persons.setZip("88888");
+        persons.setPhone("0600000000");
+        persons.setEmail("monemail@gmail.com");
+        List<Persons> listPersons = new ArrayList<Persons>();
+        listPersons.add(persons);
+
+        // WHEN
+        when(personsRepositoryInterface.getByLastName("monNom")).thenReturn(listPersons);
+
+        // THEN
+        assertThat(personsService.getByLastName("monNom").toString(), containsString("monNom"));
+
+    }
+
+    @Test
+    @DisplayName("Test  getByFirstNameAndLastName")
+    public void getByFirstNameAndLastName() {
+        // GIVEN
+        Persons persons = new Persons();
+        persons.setFirstName("monPrenom");
+        persons.setLastName("monNom");
+        persons.setAddress("8 MaRue");
+        persons.setCity("MaVille");
+        persons.setZip("88888");
+        persons.setPhone("0600000000");
+        persons.setEmail("monemail@gmail.com");
+        List<Persons> listPersons = new ArrayList<Persons>();
+        listPersons.add(persons);
+        // WHEN
+        when(personsRepositoryInterface.getByFirstNameAndLastName("monPrenom", "monNom")).thenReturn(listPersons);
+
+        // THEN
+        assertThat(personsService.getByFirstNameAndLastName("monPrenom", "monNom")
+                .toString(), containsString("monNom"));
+
+    }
 }
