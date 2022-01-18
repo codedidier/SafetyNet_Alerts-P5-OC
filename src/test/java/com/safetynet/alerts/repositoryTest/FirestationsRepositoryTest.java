@@ -1,5 +1,7 @@
 package com.safetynet.alerts.repositoryTest;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.verify;
@@ -17,6 +19,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.safetynet.alerts.Database;
 import com.safetynet.alerts.model.Firestations;
+import com.safetynet.alerts.model.Persons;
 import com.safetynet.alerts.repository.FirestationsRepository;
 
 @ExtendWith(MockitoExtension.class)
@@ -42,5 +45,61 @@ public class FirestationsRepositoryTest {
         // THEN
         assertTrue(getListFirestations.isEmpty());
         verify(database).getFirestations();
+    }
+
+    @Test
+    @DisplayName("Test addFirestationToListTest")
+    public void addFirestationToListTest() {
+
+        // GIVEN
+        List<Firestations> firestationsList = new ArrayList<Firestations>();
+
+        // WHEN
+        when(database.getFirestations()).thenReturn(firestationsList);
+        List<Firestations> addFirestationToList = firestationsRepository.addFirestationToList(new Firestations());
+        assertSame(firestationsList, addFirestationToList);
+
+        // THEN
+        assertEquals(1, addFirestationToList.size());
+        verify(this.database).getFirestations();
+        assertSame(addFirestationToList, this.firestationsRepository.getListFirestations());
+    }
+
+    @Test
+    @DisplayName("Test updateFirestationToListTest")
+    public void updateFirestationToListTest() {
+
+        // GIVEN
+        Firestations firestations = new Firestations();
+        firestations.setAddress("8 MaRue");
+        List<Firestations> firestationsList = new ArrayList<Firestations>();
+        firestationsList.add(firestations);
+
+        // WHEN
+        when(database.getFirestations()).thenReturn(firestationsList);
+        assertNull(firestationsRepository.updateFirestationToList(new Firestations()));
+
+        // THEN
+        verify(database).getFirestations();
+        assertSame(firestationsList, firestationsRepository.getListFirestations());
+    }
+
+    @Test
+    @DisplayName("Test updateFirestationToListTest")
+    public void deleteFirestationToListTest() {
+
+        // GIVEN
+        List<Firestations> firestationsList = new ArrayList<Firestations>();
+        firestationsList.add(new Firestations("8 MaRue", 8, new ArrayList<Persons>()));
+
+        // WHEN
+        when(database.getFirestations()).thenReturn(firestationsList);
+        firestationsRepository.deleteFirestationToList("8 MaRue");
+        verify(database).getFirestations();
+        List<Firestations> addFirestationToList = firestationsRepository.getListFirestations();
+
+        // THEN
+        assertSame(firestationsList, addFirestationToList);
+        assertTrue(addFirestationToList.isEmpty());
     }
 }

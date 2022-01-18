@@ -19,11 +19,15 @@ public class Medicalrecords {
     @JsonIgnore
     private String firstNameAndLastName;
 
+    public Medicalrecords(String lastName, String birthdate, List<String> medications, List<String> allergies) {
+    }
+
     public Medicalrecords() {
     }
 
-    public Medicalrecords(String lastName, String firstName, String birthdate, List<String> allergies,
-            List<String> medications, int age, String firstNameAndLastName) {
+    public Medicalrecords(String firstName, String lastName, String birthdate, List<String> medications,
+            List<String> allergies, int age, String firstNameAndLastName) {
+
         this.lastName = lastName;
         this.firstName = firstName;
         this.birthdate = birthdate;
@@ -81,6 +85,16 @@ public class Medicalrecords {
     public void setFirstNameAndLastName(String firstNameAndLastName) {
 
         this.firstNameAndLastName = firstNameAndLastName;
+    }
+
+    public int getAge() {
+
+        return age;
+    }
+
+    public void setAge(int age) {
+
+        this.age = age;
     }
 
     public void updatemedicalexceptFirstNameLastName(String birthdate, List<String> allergies,

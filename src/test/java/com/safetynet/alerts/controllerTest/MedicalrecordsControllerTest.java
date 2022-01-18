@@ -1,9 +1,13 @@
 package com.safetynet.alerts.controllerTest;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.ArrayList;
@@ -13,14 +17,17 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.safetynet.alerts.controller.MedicalrecordsController;
 import com.safetynet.alerts.model.Medicalrecords;
 import com.safetynet.alerts.service.MedicalrecordsService;
 
+@AutoConfigureMockMvc
 @WebMvcTest(MedicalrecordsController.class)
 public class MedicalrecordsControllerTest {
 
@@ -31,7 +38,7 @@ public class MedicalrecordsControllerTest {
     private MedicalrecordsService medicalrecordsService;
 
     @Test
-    @DisplayName("Test return status for getListMedicalrecords request")
+    @DisplayName("Test du statut de retour pour la requête getListMedicalrecords")
     public void getListMedicalrecords() throws Exception {
 
         // GIVEN
@@ -65,6 +72,66 @@ public class MedicalrecordsControllerTest {
 
         // THEN
         verify(medicalrecordsService, times(1)).getListMedicalrecords(); // verifie que firestationService est appelé
+
+    }
+
+    @Test
+    @DisplayName("Test du statut de retour de la demande addMedicalrecordToList")
+    public void addMedicalrecordToList() throws Exception {
+        List<Medicalrecords> medicalrecordsList = new ArrayList<Medicalrecords>();
+
+        when(medicalrecordsService.addMedicalrecordToList(any(Medicalrecords.class))).thenReturn(medicalrecordsList);
+
+        // WHEN
+        mockMvc.perform(post("/medicalRecord").content(
+                "{ \"firstName\":\"monPrenom\", \"lastName\":\"monNom\", \"birthdate\":\"01/01/2000\", \"medications\":[\"doliprane 1000g\", \"aspirine 20mg\"], \"allergies\":[\"gluten\", \"chat\"] }")
+                .contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
+
+        // THEN
+        verify(medicalrecordsService, times(1)).addMedicalrecordToList(any(Medicalrecords.class));
+
+    }
+
+    @Test
+    @DisplayName("Test du statut de retour de la demande updateMedicalrecordToList")
+    public void updateMedicalrecordToList() throws Exception {
+        // GIVEN
+        Medicalrecords medicalrecords = new Medicalrecords();
+        List<String> medications = new ArrayList<String>();
+        medications.add("doliprane UpdateTest");
+        medications.add("aspirine updateTest");
+        List<String> allergies = new ArrayList<String>();
+        allergies.add("gluten updateTest");
+        allergies.add("chat updateTest");
+        medicalrecords.setFirstName("monPrenom");
+        medicalrecords.setLastName("monNom");
+        medicalrecords.setBirthdate("01/01/2000");
+        medicalrecords.setMedications(medications);
+        medicalrecords.setAllergies(allergies);
+        when(medicalrecordsService.updateMedicalrecordToList(any(String.class), (any(Medicalrecords.class))))
+                .thenReturn(medicalrecords);
+
+        // WHEN
+        mockMvc.perform(put("/medicalRecord/nicolasbiancucci").content("{\"firstName\":\"monNom\"}")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+
+        // THEN
+        verify(medicalrecordsService, times(1)).updateMedicalrecordToList(any(String.class),
+                (any(Medicalrecords.class)));
+
+    }
+
+    @Test
+    @DisplayName("Test du statut de retour de la demande deleteMedicalrecordToList")
+    public void deleteMedicalrecordToList() throws Exception {
+        // GIVEN
+
+        // WHEN
+        mockMvc.perform(delete("/medicalRecord/JohnBoyd")).andExpect(status().isOk());
+
+        // THEN
+        verify(medicalrecordsService, times(1)).deleteMedicalrecordToList(any(String.class));
 
     }
 }

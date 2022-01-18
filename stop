@@ -1,0 +1,43 @@
+[33mcommit d3e9d8faf355a79feb274b4924de2d4a9bf97cc7[m[33m ([m[1;36mHEAD -> [m[1;32msafetynet_V1.0.2[m[33m, [m[1;31morigin/safetynet_V1.0.2[m[33m)[m
+Author: Didier Cotrel <didier.cotrel@gmail.com>
+Date:   Mon Jan 10 14:36:55 2022 +0100
+
+    Créations des tests unitaires GET FirestationsServicetest,
+    FirestationsrepositoryTest, FirestationsControllerTest.
+    Création des classes avec la méthode GET FirestationsService,
+    FirestationsRepository, FirestationsController.
+
+[33mcommit e4fd549de029a0e549809fe6415d024f1a5c162c[m
+Author: Didier Cotrel <didier.cotrel@gmail.com>
+Date:   Mon Jan 10 10:44:00 2022 +0100
+
+    Correction des tests unitaires GET
+    PersonsServicetest,PersonsrepositoryTest, PersonsControllerTest.
+
+[33mcommit 9afd729007a92a1e381118cb895978361eb75f66[m
+Author: Didier Cotrel <didier.cotrel@gmail.com>
+Date:   Sun Jan 9 17:52:22 2022 +0100
+
+    Iplementation de la classe Database
+    Creation dans le package model des classes: Persons, Firestations,
+    Medicalrecords.
+    Creation dans le package controller pour la methode GET des classes:
+    PersonsController, FirestationsController, MedicalrecordsController.
+    et des Tests.
+    Creation de Persons et PersonsInterface dans controller et service.
+
+[33mcommit 886c765deaa31d83b59eabec318ec71919316e3a[m[33m ([m[1;31morigin/safetynet_V1.0.1[m[33m, [m[1;32msafetynet_V1.0.1[m[33m)[m
+Author: Didier Cotrel <didier.cotrel@gmail.com>
+Date:   Fri Jan 7 08:37:59 2022 +0100
+
+    Création des packages « controller, service, model, repository »
+    Création des 3 classes du model métier : Persons; Medicalrecords;
+    Firestations; dans « model »,
+    et de la classe Database  qui va contenir une liste de chacun de ces
+    trois objets.
+
+[33mcommit a9d9ade02ffe77ee67d6128c8397edc1f5ffdf89[m[33m ([m[1;31morigin/main[m[33m, [m[1;32mmain[m[33m)[m
+Author: Didier Cotrel <didier.cotrel@gmail.com>
+Date:   Mon Jan 3 15:05:08 2022 +0100
+
+    Création du projet avec l'ajout des 4 packages (controller, service, model, repository)
