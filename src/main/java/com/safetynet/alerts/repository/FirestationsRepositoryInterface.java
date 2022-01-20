@@ -17,4 +17,9 @@ public interface FirestationsRepositoryInterface {
 
 //DELETE /firestation
     void deleteFirestationToList(String address);
+
+//URLS
+    List<Firestations> getAddressByStation(int stationNumber);
+
+    Firestations getById(String firestationAddress);
 }

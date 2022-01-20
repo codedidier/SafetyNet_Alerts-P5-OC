@@ -97,13 +97,6 @@ public class Medicalrecords {
         this.age = age;
     }
 
-    public void updatemedicalexceptFirstNameLastName(String birthdate, List<String> allergies,
-            List<String> medications) {
-        this.birthdate = birthdate;
-        this.allergies = allergies;
-        this.medications = medications;
-    }
-
     @Override
     public String toString() {
         return getFirstName() + ", " + getLastName() + ", " + getBirthdate() + ", " + getMedications() + ", "

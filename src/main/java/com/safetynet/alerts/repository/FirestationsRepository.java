@@ -1,5 +1,6 @@
 package com.safetynet.alerts.repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,5 +59,29 @@ public class FirestationsRepository implements FirestationsRepositoryInterface {
         List<Firestations> deleteFirestation = database.getFirestations();
         deleteFirestation.removeIf(firestations -> firestations.getAddress().equals(address));
 
+    }
+
+//URLS
+    @Override
+    public Firestations getById(String firestationAddress) {
+
+        for (Firestations address : database.getFirestations()) {
+            if (address.getAddress().equals(firestationAddress)) {
+                return address;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public List<Firestations> getAddressByStation(int stationNumber) {
+
+        List<Firestations> listFirestation = new ArrayList<>();
+        for (Firestations firestations : database.getFirestations()) {
+            if (firestations.getStation() == stationNumber) {
+                listFirestation.add(firestations);
+            }
+        }
+        return listFirestation;
     }
 }

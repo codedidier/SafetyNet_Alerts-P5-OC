@@ -10,6 +10,9 @@ import org.springframework.stereotype.Service;
 import com.safetynet.alerts.model.Persons;
 import com.safetynet.alerts.repository.PersonsRepositoryInterface;
 
+import lombok.Data;
+
+@Data
 @Service
 public class PersonsService implements PersonsServiceInterface {
 

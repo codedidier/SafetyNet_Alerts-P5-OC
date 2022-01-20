@@ -2,6 +2,7 @@ package com.safetynet.alerts.serviceTest;
 
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
@@ -52,7 +53,7 @@ public class PersonsServiceTest {
         when(personsRepositoryInterface.getListPersons()).thenReturn(listPersons);
 
         // THEN
-        assertThat(personsService.getListPersons().toString(), containsString("monPrenom"));
+        assertEquals(personsService.getListPersons().size(), 1);
     }
 
     @Test
@@ -76,7 +77,7 @@ public class PersonsServiceTest {
         personsService.addNewPersonToList(persons);
 
         // THEN
-        assertThat(personsService.addNewPersonToList(persons).toString(), containsString("monPrenom"));
+        assertEquals(personsService.addNewPersonToList(persons).size(), 1);
 
     }
 
@@ -121,7 +122,7 @@ public class PersonsServiceTest {
         // WHEN
 
         // THEN
-        assertThat(personsService.deletePersonToList("monPrenommonNom").toString(), containsString(""));
+        assertEquals(personsService.deletePersonToList("monPrenommonNom").size(), 0);
 
     }
 
@@ -143,7 +144,7 @@ public class PersonsServiceTest {
         when(personsRepositoryInterface.getByAddress("8 MaRue")).thenReturn(listPersons);
 
         // THEN
-        assertThat(personsService.getByAddress("8 MaRue").toString(), containsString("monPrenom"));
+        assertEquals(personsService.getByAddress("8 MaRue").size(), 1);
     }
 
     @Test
@@ -165,7 +166,7 @@ public class PersonsServiceTest {
         when(personsRepositoryInterface.getByLastName("monNom")).thenReturn(listPersons);
 
         // THEN
-        assertThat(personsService.getByLastName("monNom").toString(), containsString("monNom"));
+        assertEquals(personsService.getByLastName("monNom").size(), 1);
 
     }
 
@@ -187,8 +188,7 @@ public class PersonsServiceTest {
         when(personsRepositoryInterface.getByFirstNameAndLastName("monPrenom", "monNom")).thenReturn(listPersons);
 
         // THEN
-        assertThat(personsService.getByFirstNameAndLastName("monPrenom", "monNom")
-                .toString(), containsString("monNom"));
+        assertEquals(personsService.getByFirstNameAndLastName("monPrenom", "monNom").size(), 1);
 
     }
 }

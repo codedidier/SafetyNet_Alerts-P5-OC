@@ -2,6 +2,7 @@ package com.safetynet.alerts.serviceTest;
 
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
@@ -47,7 +48,7 @@ public class FirestationsServiceTest {
         when(firestationsRepositoryInterface.getListFirestations()).thenReturn(firestationsList);
 
         // THEN
-        assertThat(firestationsService.getListFirestations().toString(), containsString("8 MaRue"));
+        assertEquals(firestationsService.getListFirestations().size(), 1);
     }
 
     @Test
@@ -65,7 +66,7 @@ public class FirestationsServiceTest {
         when(firestationsRepositoryInterface.addFirestationToList(firestations)).thenReturn(firestationsList);
 
         // THEN
-        assertThat(firestationsService.addFirestationToList(firestations).toString(), containsString("8 MaRue"));
+        assertEquals(firestationsService.addFirestationToList(firestations).size(), 1);
     }
 
     @Test
@@ -99,7 +100,7 @@ public class FirestationsServiceTest {
         firestationsRepositoryInterface.deleteFirestationToList("8 MaRue");
 
         // THEN
-        assertThat(firestationsService.getListFirestations().toString(), containsString(""));
+        assertEquals(firestationsService.getListFirestations().size(), 0);
 
     }
 }

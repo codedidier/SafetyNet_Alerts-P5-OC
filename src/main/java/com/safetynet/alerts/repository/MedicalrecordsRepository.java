@@ -58,7 +58,7 @@ public class MedicalrecordsRepository implements MedicalrecordsRepositoryInterfa
                 .removeIf(medicalrecords -> medicalrecords.getFirstNameAndLastName().equals(firstNameAndLastName));
     }
 
-//recherche par prenom et nom
+//URLS
     @Override
     public Medicalrecords getByFirstName(String firstName) {
 

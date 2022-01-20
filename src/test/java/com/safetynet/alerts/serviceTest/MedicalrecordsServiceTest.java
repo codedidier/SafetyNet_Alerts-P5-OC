@@ -2,6 +2,7 @@ package com.safetynet.alerts.serviceTest;
 
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -59,7 +60,7 @@ public class MedicalrecordsServiceTest {
         when(medicalrecordsRepositoryInterface.getListMedicalrecords()).thenReturn(medicalrecordsList);
 
         // THEN
-        assertThat(medicalrecordsService.getListMedicalrecords().toString(), containsString("monPrenom"));
+        assertEquals(medicalrecordsService.getListMedicalrecords().size(), 1);
     }
 
     @Test
@@ -85,8 +86,7 @@ public class MedicalrecordsServiceTest {
         when(medicalrecordsRepositoryInterface.addMedicalrecordToList(medicalrecords)).thenReturn(medicalrecordList);
 
         // THEN
-        assertThat(medicalrecordsService.addMedicalrecordToList(medicalrecords).toString(),
-                containsString("monPrenom"));
+        assertEquals(medicalrecordsService.addMedicalrecordToList(medicalrecords).size(), 1);
 
     }
 

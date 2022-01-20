@@ -58,4 +58,20 @@ public class FirestationsService implements FirestationsServiceInterface {
         firestationsRepositoryInterface.deleteFirestationToList(address);
         return firestationsRepositoryInterface.getListFirestations();
     }
+
+//URLS
+    @Override
+    public Firestations getById(String firestationAddress) {
+
+        logger.info("getById OK :" + firestationAddress);
+        return firestationsRepositoryInterface.getById(firestationAddress);
+
+    }
+
+    @Override
+    public List<Firestations> getAddressByStation(int stationNumber) {
+
+        logger.info("findAddressByStation SUCCESS :" + stationNumber);
+        return firestationsRepositoryInterface.getAddressByStation(stationNumber);
+    }
 }
