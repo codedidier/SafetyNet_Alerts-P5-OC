@@ -15,7 +15,7 @@ import com.safetynet.alerts.dto.ChildAlertWithAgeDto;
 import com.safetynet.alerts.dto.CommunityEmailDto;
 import com.safetynet.alerts.dto.FireAddressDto;
 import com.safetynet.alerts.dto.FireDto;
-import com.safetynet.alerts.dto.FirestationDto;
+import com.safetynet.alerts.dto.FirestationsPersonsDto;
 import com.safetynet.alerts.dto.FloodDto;
 import com.safetynet.alerts.dto.PersonInfoDto;
 import com.safetynet.alerts.dto.PhoneAlertDto;
@@ -48,7 +48,7 @@ public class EndpointsUrlsService {
     }
 
     // URL firestation
-    public FirestationDto listPersonsByStation(int stationNumber) throws ParseException {
+    public FirestationsPersonsDto listPersonsByStation(int stationNumber) throws ParseException {
 
         ExtractAge extractAge = new ExtractAge();
         List<Persons> listPersonsStation = new ArrayList<Persons>();
@@ -63,7 +63,7 @@ public class EndpointsUrlsService {
             }
         }
         logger.info("listPersonsByStation OK :" + stationNumber);
-        return new FirestationDto(listPersonsStation, extractAge.getAdults(), extractAge.getChildren());
+        return new FirestationsPersonsDto(listPersonsStation, extractAge.getAdults(), extractAge.getChildren());
     }
 
     // URL childAlert

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.safetynet.alerts.dto.ChildAlertDto;
 import com.safetynet.alerts.dto.CommunityEmailDto;
 import com.safetynet.alerts.dto.FireAddressDto;
-import com.safetynet.alerts.dto.FirestationDto;
+import com.safetynet.alerts.dto.FirestationsPersonsDto;
 import com.safetynet.alerts.dto.FloodDto;
 import com.safetynet.alerts.dto.PersonInfoDto;
 import com.safetynet.alerts.dto.PhoneAlertDto;
@@ -29,7 +29,7 @@ public class EndpointsUrlsController {
 
     // URL firestation
     @GetMapping(value = "/firestation")
-    public FirestationDto listPersonsByStation(@RequestParam(value = "stationNumber") int stationNumber)
+    public FirestationsPersonsDto listPersonsByStation(@RequestParam(value = "stationNumber") int stationNumber)
             throws ParseException {
 
         logger.info("listPersonsByStation");

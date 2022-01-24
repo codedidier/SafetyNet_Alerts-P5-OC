@@ -18,6 +18,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import com.safetynet.alerts.dto.ChildAlertWithAgeDto;
 import com.safetynet.alerts.dto.FireDto;
@@ -32,7 +35,10 @@ import com.safetynet.alerts.repository.PersonsRepositoryInterface;
 import com.safetynet.alerts.service.EndpointsUrlsService;
 import com.safetynet.alerts.service.ExtractAge;
 
+@AutoConfigureMockMvc
 @ExtendWith(MockitoExtension.class)
+@WebMvcTest(EndpointsUrlsService.class)
+@SpringBootTest
 public class EndpointsUrlsServiceTest {
 
     @Mock
