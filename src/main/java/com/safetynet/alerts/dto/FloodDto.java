@@ -10,7 +10,7 @@ public class FloodDto {
     private final List<String> medications;
     private final List<String> allergies;
 
-    public FloodDto(String lastName, String phone, int age, List<String> medications, List<String> allergies) {
+    public FloodDto(String lastName, List<String> medications, List<String> allergies, String phone, int age) {
 
         this.lastName = lastName;
         this.phone = phone;

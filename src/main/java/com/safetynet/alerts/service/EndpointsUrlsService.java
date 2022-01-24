@@ -164,8 +164,8 @@ public class EndpointsUrlsService {
                 listMedical.add(medicalrecords);
                 extractAge.calculateAge(medicalrecords.getBirthdate());
 
-                floodDto.add(new FloodDto(persons.getLastName(), persons.getPhone(), extractAge.getAge(), medicalrecords
-                        .getMedications(), medicalrecords.getAllergies()));
+                floodDto.add(new FloodDto(persons.getLastName(), medicalrecords
+                        .getMedications(), medicalrecords.getAllergies(), persons.getPhone(), extractAge.getAge()));
             }
         }
         logger.info("listHomeByStation OK :" + stations);
@@ -175,7 +175,7 @@ public class EndpointsUrlsService {
     // URL personInfo
     public List<PersonInfoDto> listPersonInfo(String firstName, String lastName) throws ParseException {
 
-        List<Persons> listPersons2 = personsRepositoryInterface.getByFirstNameAndLastName(firstName, lastName);
+        List<Persons> listPersons2 = personsRepositoryInterface.getByLastName(lastName);
         List<Persons> listPersons = new ArrayList<Persons>(listPersons2);
         List<PersonInfoDto> personInfoDtoList = new ArrayList<PersonInfoDto>();
 

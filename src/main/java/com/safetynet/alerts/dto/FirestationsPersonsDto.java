@@ -7,7 +7,7 @@ import com.safetynet.alerts.model.Persons;
 
 public class FirestationsPersonsDto {
 
-    @JsonIgnoreProperties({ "zip", "city", "email" })
+    @JsonIgnoreProperties({ "zip", "city", "email", "medicalrecords" })
     private List<Persons> listPersonsStation;
     private long adults;
     private long children;
