@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" 
-		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
@@ -14,10 +13,21 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>SafetyNet_Alerts</name>
 	<description>SafetyNet Alerts Projet 5 OC</description>
+	<url>https://github.com/codedidier/SafetyNet_Alerts-P5-OC</url>
+		
 	<properties>
 		<java.version>1.8</java.version>
+		<!-- version cucumber -->
+		<cucumber.version>6.10.2</cucumber.version>
+		<!-- properties failsafe to skip IT -->
+		<skip.it>false</skip.it>
+		<!-- properties jacoco -->
+		<jacoco.execution.data.file>${project.build.directory}/jacoco.exec</jacoco.execution.data.file>
 	</properties>
+	
 	<dependencies>
+	
+	<!-- === Springboot starter === -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
@@ -36,21 +46,18 @@
 		</dependency>
 
 		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<optional>true</optional>
-		</dependency>
-		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-	
+
+        <dependency>
+		    <groupId>io.springfox</groupId>
+		    <artifactId>springfox-boot-starter</artifactId>
+		    <version>3.0.0</version>
+		</dependency>
+		
+	<!-- === log4j logging === -->
 			<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-api</artifactId>
@@ -58,107 +65,81 @@
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-core</artifactId>
-					</dependency>
+		</dependency>
+        
+      <!-- === Datasources === -->
 		<dependency>
-            <groupId>org.jacoco</groupId>
-            <artifactId>jacoco-maven-plugin</artifactId>
-            <version>0.8.5</version>
-            <type>maven-plugin</type>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+
+		<!-- === Lombok === -->
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+
+		<!-- === junit vintage === -->
+		<dependency>
+			<groupId>org.junit.vintage</groupId>
+			<artifactId>junit-vintage-engine</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- === LogCaptor for test=== -->
+		<dependency>
+		    <groupId>io.github.hakky54</groupId>
+		    <artifactId>logcaptor</artifactId>
+		    <version>2.5.0</version>
+		    <scope>test</scope>
+		</dependency>
+
+		<!-- cucumber-java -->
+		<dependency>
+		    <groupId>io.cucumber</groupId>
+		    <artifactId>cucumber-java</artifactId>
+		    <version>6.10.2</version>
+		    <scope>test</scope>
+		</dependency>
+		<!-- cucumber-spring -->
+		<dependency>
+		    <groupId>io.cucumber</groupId>
+		    <artifactId>cucumber-spring</artifactId>
+		    <version>6.10.2</version>
+		    <scope>test</scope>
+		</dependency>
+		<!-- cucumber-junit -->
+		<dependency>
+		    <groupId>io.cucumber</groupId>
+		    <artifactId>cucumber-junit</artifactId>
+		    <version>6.10.2</version>
+		    <scope>test</scope>
+		</dependency>
+		
+	<!-- === ASSERTJ-db ===== -->
+		<dependency>
+		  <groupId>org.assertj</groupId>
+		  <artifactId>assertj-db</artifactId>
+		  <version>2.0.2</version>
+		  <scope>test</scope>
+		</dependency>
+		
+		<!-- === Hamcrest   ===== -->
+		<dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-library</artifactId>
+            <scope>test</scope>
         </dependency>
 		
 	</dependencies>
 
+<!-- ===    Build   ===== -->
 	<build>
-	<pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-site-plugin</artifactId>
-                    <version>3.9.1</version>
-                    <configuration>
-                        <locales>fr</locales>
-                    </configuration>
-                    </plugin>
-            </plugins>
-        </pluginManagement>
-               
-			<plugins>
-			<plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                        <configuration>
-                            <archive>
-                                <manifest>
-                                    <mainClass>
-                                        com.safetynet.alerts.App
-                                    </mainClass>
-                                </manifest>
-                            </archive>
-                            <descriptorRefs>
-                                <descriptorRef>jar-with-dependencies</descriptorRef>
-                            </descriptorRefs>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-           <plugin>
-             <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                              <dependencies>
-                    <dependency>
-                        <groupId>org.junit.platform</groupId>
-                        <artifactId>junit-platform-surefire-provider</artifactId>
-                        <version>1.2.0</version>
-                    </dependency>
-                </dependencies>
-                <configuration>
-                    <excludes>
-                       </excludes>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>integration-test</id>
-                        <goals>
-                            <goal>test</goal>
-                        </goals>
-            			  <phase>integration-test</phase>
-                        <configuration>
-                            <excludes>
-                                <exclude>none</exclude>
-                            </excludes>
-                            <includes>
-                                 </includes>
-                        </configuration>
-                    </execution>
-                </executions>
-			 </plugin>
-			 
-			 <plugin>
-                <groupId>org.jacoco</groupId>
-                <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.7</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>prepare-agent</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>jacoco-report</id>
-                        <phase>test</phase>
-                        <goals>
-                            <goal>report</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        			
+          <plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
@@ -170,30 +151,150 @@
 						</exclude>
 					</excludes>
 				</configuration>
+				<executions>
+				<!-- for generate actuator: mvn spring-boot:build-info -->
+					<execution>
+                        <goals>
+                            <goal>build-info</goal>
+                        </goals>
+                        <configuration>
+                            <additionalProperties>
+                                <encoding.source>UTF-8</encoding.source>
+                                <encoding.reporting>UTF-8</encoding.reporting>
+                                <java.source>${maven.compiler.source}</java.source>
+                                <java.target>${maven.compiler.target}</java.target>
+                            </additionalProperties>
+                        </configuration>
+                    </execution>
+                 <!--  to execute pre-post integration goal for failsafe -->
+                	<execution>
+	                    <id>pre-integration-test</id>
+	                    <goals>
+	                        <goal>start</goal>
+	                    </goals>
+	                    <configuration>
+	                    	<skip>${skip.it}</skip>
+	                    </configuration>
+	                </execution>
+	                <execution>
+	                    <id>post-integration-test</id>
+	                    <goals>
+	                        <goal>stop</goal>
+	                    </goals>
+	                </execution>
+            	</executions>
 			</plugin>
+
+			<!-- override of failsafe plugin to add classpath directory and option to skip IT( -Dskip.it=true) -->
+			
+			<plugin>
+			    <groupId>org.apache.maven.plugins</groupId>
+			    <artifactId>maven-failsafe-plugin</artifactId>
+			    <configuration>
+			        <classesDirectory>${project.build.outputDirectory}</classesDirectory>
+			        <skip>${skip.it}</skip>
+			    </configuration>
+			</plugin>
+	
+			<!-- plugin to create mvn site -->
+			
+			<plugin>
+		        <groupId>org.apache.maven.plugins</groupId>
+		        <artifactId>maven-site-plugin</artifactId>
+		        <version>3.9.1</version>
+		        <configuration>
+		          <locales>en,fr</locales>
+		        </configuration>
+	      	</plugin>
+	    	
+	    	<!-- === Jacoco === -->
+			
+			<plugin>
+				<groupId>org.jacoco</groupId>
+	            <artifactId>jacoco-maven-plugin</artifactId>
+	            <version>0.8.7</version>
+	            <executions>
+	                <execution>
+	                	<id>pre-test</id>
+	                    <goals>
+	                       <goal>prepare-agent</goal>
+	                    </goals>
+	                    <configuration>
+	                    	<destFile>${jacoco.execution.data.file}</destFile>
+	                    </configuration>
+	                </execution>
+	                <execution>
+	                   <id>post-test</id>
+	                   <phase>test</phase>
+	                      <goals>
+	                         <goal>report</goal>
+	                      </goals>
+	                      <configuration>
+	                      	<dataFile>${jacoco.execution.data.file}</dataFile>
+	                      	<outputDirectory>${project.reporting.outputDirectory}/jacoco</outputDirectory>
+	                      </configuration>
+	                </execution>
+	             </executions>
+	         </plugin>
 		</plugins>
 	</build>
 	
-	<!-- ajout des balise reporting pour dire à maven quel plugin utiliser pour les rapports --> 
-      <reporting> 
-      		<plugins>
-			<plugin>
-		            <groupId>org.codehaus.mojo</groupId>
-		            <artifactId>findbugs-maven-plugin</artifactId>
-		            <version>3.0.5</version>
-		      </plugin>
-		      <plugin>
+	 <!-- DistributionManagement -->
+		<distributionManagement>
+    	<site>
+      	<id>Site-SafetyNet_Alerts</id>
+      	<url>scp://localhost/tmp/</url>
+    	</site>
+ 	</distributionManagement>
+	 	
+	<!-- === Reporting  ===== -->
+	<reporting>
+	    <plugins>
+	      <plugin>
+	        <groupId>org.apache.maven.plugins</groupId>
+	        <artifactId>maven-project-info-reports-plugin</artifactId>
+	        <version>3.1.2</version>
+	      </plugin>
+	
+	      <!-- === Surefire Report Plugin === -->
+	      <plugin>
+		     <groupId>org.apache.maven.plugins</groupId>
+		    <artifactId>maven-surefire-report-plugin</artifactId>
+		    <version>3.0.0-M5</version>
+		    <reportSets>
+		    	<reportSet>
+		   			<reports>
+			   			<report>report</report>
+			   		</reports>
+		   		</reportSet>
+	   		</reportSets>
+		   </plugin>
+		   <plugin>
+	            <groupId>org.jacoco</groupId>
+	            <artifactId>jacoco-maven-plugin</artifactId>
+	            <configuration>
+	                <dataFile>${jacoco.execution.data.file}</dataFile>
+	            </configuration>
+	            <reportSets>
+	                <reportSet>
+	                    <reports>
+	                        <report>report</report>
+	                    </reports>
+	                </reportSet>
+	            </reportSets>
+        	</plugin>
+        	<plugin>
 		        <groupId>org.apache.maven.plugins</groupId>
-		        <artifactId>maven-project-info-reports-plugin</artifactId>
-		        <version>3.1.2</version>
-		      </plugin>
-		    </plugins>
-	  </reporting>
-		    <distributionManagement>
-		        <site>
-		            <id>site-projet</id>
-		            <url>scp://localhost/tmp/</url>
-		        </site>
-		    </distributionManagement>
-
+		        <artifactId>maven-javadoc-plugin</artifactId>
+		        <version>3.3.0</version>
+		        <reportSets>
+		        	<reportSet>
+		        		<reports>
+		        			<report>javadoc</report>
+		        		</reports>
+		        	</reportSet>
+		        </reportSets>
+		        </plugin>
+	    </plugins>
+	</reporting>
 </project>

@@ -337,8 +337,8 @@ public class EndpointsUrlsServiceTest {
         medicalrecordsList.add(medicalrecords);
 
         // WHEN
-        when(personsRepositoryInterface.getByFirstNameAndLastName("monPrenom", "monNom")).thenReturn(listPersons);
-        when(medicalrecordsRepositoryInterface.getByFirstName(persons.getFirstName())).thenReturn(medicalrecords);
+        when(personsRepositoryInterface.getByLastName("monNom")).thenReturn(listPersons);
+        when(medicalrecordsRepositoryInterface.getByFirstName(persons.getLastName())).thenReturn(medicalrecords);
 
         // THEN
 

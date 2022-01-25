@@ -61,7 +61,7 @@ public class ExtractAgeServiceTest {
         long adults = extractAge.getAge();
 
         // THEN
-        assertEquals(adults, 52);
+        assertEquals(adults, 51);
 
     }
 }
