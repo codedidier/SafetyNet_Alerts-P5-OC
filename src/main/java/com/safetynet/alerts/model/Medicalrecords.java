@@ -4,9 +4,6 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import lombok.Data;
-
-@Data
 public class Medicalrecords {
 
     private String firstName;
@@ -34,7 +31,6 @@ public class Medicalrecords {
         this.allergies = allergies;
         this.medications = medications;
         this.age = age;
-        this.firstNameAndLastName = firstNameAndLastName;
     }
 
     public String getLastName() {
@@ -80,11 +76,6 @@ public class Medicalrecords {
 
     public void setMedications(List<String> medications) {
         this.medications = medications;
-    }
-
-    public void setFirstNameAndLastName(String firstNameAndLastName) {
-
-        this.firstNameAndLastName = firstNameAndLastName;
     }
 
     public int getAge() {
