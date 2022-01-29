@@ -102,4 +102,36 @@ public class FirestationsRepositoryTest {
         assertSame(firestationsList, addFirestationToList);
         assertTrue(addFirestationToList.isEmpty());
     }
+
+    @Test
+    @DisplayName("Test findByIdTest")
+    public void getByIdTest() {
+        // GIVEN
+        List<Firestations> listFirestation = new ArrayList<Firestations>();
+        Firestations firestations = new Firestations("8 MaRue", 8, new ArrayList<Persons>());
+        listFirestation.add(firestations);
+
+        // WHEN
+        when(database.getFirestations()).thenReturn(listFirestation);
+        assertSame(firestations, firestationsRepository.getById("8 MaRue"));
+        verify(database).getFirestations();
+
+        // THEN
+        assertSame(listFirestation, firestationsRepository.getListFirestations());
+    }
+
+    @Test
+    @DisplayName("Test getAddressByStationTest")
+    public void getAddressByStationTest() {
+        // GIVEN
+        List<Firestations> listFirestation = new ArrayList<Firestations>();
+
+        // WHEN
+        when(database.getFirestations()).thenReturn(listFirestation);
+        assertTrue(firestationsRepository.getAddressByStation(10).isEmpty());
+        verify(database).getFirestations();
+
+        // THEN
+        assertSame(listFirestation, firestationsRepository.getListFirestations());
+    }
 }

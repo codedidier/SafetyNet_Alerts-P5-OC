@@ -50,13 +50,7 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
-        <dependency>
-		    <groupId>io.springfox</groupId>
-		    <artifactId>springfox-boot-starter</artifactId>
-		    <version>3.0.0</version>
-		</dependency>
-		
+	
 	<!-- === log4j logging === -->
 			<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
@@ -220,7 +214,7 @@
 	                       <goal>prepare-agent</goal>
 	                    </goals>
 	                    <configuration>
-	                    	<destFile>${jacoco.execution.data.file}</destFile>
+	                    	<destFile>${jacoco.execution.data.file}</destFile>                
 	                    </configuration>
 	                </execution>
 	                <execution>
@@ -234,7 +228,7 @@
 	                      	<outputDirectory>${project.reporting.outputDirectory}/jacoco</outputDirectory>
 	                      </configuration>
 	                </execution>
-	             </executions>
+	             </executions>             
 	         </plugin>
 		</plugins>
 	</build>
@@ -255,6 +249,13 @@
 	        <artifactId>maven-project-info-reports-plugin</artifactId>
 	        <version>3.1.2</version>
 	      </plugin>
+	      
+	      <!-- === findbugs Report Plugin === -->
+	      			<plugin>
+		            <groupId>org.codehaus.mojo</groupId>
+		            <artifactId>findbugs-maven-plugin</artifactId>
+		            <version>3.0.5</version>
+		      </plugin>
 	
 	      <!-- === Surefire Report Plugin === -->
 	      <plugin>

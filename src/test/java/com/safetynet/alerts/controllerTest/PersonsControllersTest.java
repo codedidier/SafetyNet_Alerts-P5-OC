@@ -18,7 +18,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
@@ -29,7 +28,6 @@ import com.safetynet.alerts.controller.PersonsController;
 import com.safetynet.alerts.model.Persons;
 import com.safetynet.alerts.service.PersonsService;
 
-@AutoConfigureMockMvc
 @WebMvcTest(PersonsController.class)
 @ExtendWith(MockitoExtension.class)
 public class PersonsControllersTest {
@@ -68,9 +66,9 @@ public class PersonsControllersTest {
 
         // THEN
         verify(personsService, times(1)).getListPersons(); // verifie que le service persons est appelé
-
     }
 
+    @Test
     @DisplayName("Test la demande d'ajout d'une nouvelle personne")
     public void addPersonList() throws Exception {
 
@@ -88,8 +86,8 @@ public class PersonsControllersTest {
         when(personsService.addNewPersonToList(any(Persons.class))).thenReturn(listPersons);
 
         // WHEN
-        mockMvc.perform(post("/person").content("{\"firstName\":\"monPrenom\", \"lastName\":\"monNom\","
-                + " \"address\":\"8 MaRue\", \"city\":\"MaVille\", \"zip\":\\\"88888\", \"phone\":\"0600000000\", \"email\":\"monemail@gmail.com\" }\")")
+        mockMvc.perform(post("/person").content(
+                "{\"firstName\":\"monPrenom\", \"lastName\":\"monNom\",\"address\":\"8 MaRue\", \"city\":\"MaVille\" }")
                 .contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk()); // Execute la commande POST
                                                                                       // /person
 

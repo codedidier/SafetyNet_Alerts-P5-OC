@@ -69,15 +69,15 @@ public class PersonsRepositoryTest {
     @DisplayName("Test updatePersonToListTest")
     public void updatePersonToListTest() {
         // GIVEN
-        List<Persons> personsList = new ArrayList<Persons>();
+        List<Persons> personsUpdate = new ArrayList<Persons>();
 
         // WHEN
-        when(database.getPersons()).thenReturn(personsList);
+        when(database.getPersons()).thenReturn(personsUpdate);
         assertNull(personsRepository.updatePersonToList("monPrenom", new Persons()));
 
         // THEN
         verify(database).getPersons();
-        assertSame(personsList, personsRepository.getListPersons());
+        assertSame(personsUpdate, personsRepository.getListPersons());
     }
 
     @Test
@@ -133,8 +133,8 @@ public class PersonsRepositoryTest {
     }
 
     @Test
-    @DisplayName("Test findByFirstNameAndLastNameTest")
-    public void findByFirstNameAndLastNameTest() {
+    @DisplayName("Test getByFirstNameAndLastNameTest")
+    public void getByFirstNameAndLastNameTest() {
         // GIVEN
         List<Persons> personsList = new ArrayList<Persons>();
         Medicalrecords medicalrecords = new Medicalrecords();

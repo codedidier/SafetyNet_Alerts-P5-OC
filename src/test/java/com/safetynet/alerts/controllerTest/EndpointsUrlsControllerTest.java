@@ -3,22 +3,19 @@ package com.safetynet.alerts.controllerTest;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.safetynet.alerts.controller.EndpointsUrlsController;
 import com.safetynet.alerts.service.EndpointsUrlsService;
 
 @AutoConfigureMockMvc
 @ExtendWith(MockitoExtension.class)
-@WebMvcTest(EndpointsUrlsController.class)
 @SpringBootTest
 public class EndpointsUrlsControllerTest {
 
@@ -29,14 +26,14 @@ public class EndpointsUrlsControllerTest {
     EndpointsUrlsService endpointsUrlsService;
 
 // URL firestation
-  
+    @Test
     @DisplayName("Test de retour du statut 200 pour un numéro stationNumber valide")
     public void listPersonsByStationTest() throws Exception {
         mockMvc.perform(get("/firestation?stationNumber=2")).andExpect(status().isOk());
     }
 
     @Test
-    @DisplayName("Test de retour du statut 200 pour un numéro stationNumber null")
+    @DisplayName("Test de retour du statut 200 pour un numéro stationNumber vide")
     public void listPersonsByStationNullTest() throws Exception {
         mockMvc.perform(get("/firestation?stationNumber=")).andExpect(status().isBadRequest());
     }

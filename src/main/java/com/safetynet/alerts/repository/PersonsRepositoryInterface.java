@@ -18,8 +18,8 @@ public interface PersonsRepositoryInterface {
 //DELETE /person
     void deletePersonToList(String firstNameAndLastName);
 
-//Recherche firstName pour les URLS
-    List<Persons> getByLastName(String firstName);
+//Recherche lastName pour les URLS
+    List<Persons> getByLastName(String lastName);
 
 //Recherche firstName and lastName pour les URLS
     List<Persons> getByFirstNameAndLastName(String firstName, String lastName);

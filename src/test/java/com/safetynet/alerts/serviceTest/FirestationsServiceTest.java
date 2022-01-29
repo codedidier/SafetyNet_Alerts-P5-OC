@@ -103,4 +103,35 @@ public class FirestationsServiceTest {
         assertEquals(firestationsService.getListFirestations().size(), 0);
 
     }
+
+    @Test
+    @DisplayName("Test getById")
+    public void getById() {
+
+        // GIVEN
+        Firestations firestations = new Firestations();
+        firestations.setAddress("8 MaRue");
+        firestations.setStation(8);
+        firestationsService.addFirestationToList(firestations);
+        // WHEN
+        when(firestationsRepositoryInterface.getById("8 MaRue")).thenReturn(firestations);
+        // THEN
+        assertThat(firestationsService.getById("8 MaRue").toString(), containsString("8 MaRue"));
+    }
+
+    @Test
+    @DisplayName("Test getAddressByStation")
+    public void getAddressByStation() {
+
+        // GIVEN
+        Firestations firestations = new Firestations();
+        firestations.setAddress("8 MaRue");
+        firestations.setStation(8);
+        List<Firestations> firestationList = new ArrayList<Firestations>();
+        firestationList.add(firestations);
+        // WHEN
+        when(firestationsRepositoryInterface.getAddressByStation(8)).thenReturn(firestationList);
+        // THEN
+        assertThat(firestationsService.getAddressByStation(8).toString(), containsString("8"));
+    }
 }

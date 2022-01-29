@@ -11,16 +11,13 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.junit.Test;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import com.safetynet.alerts.dto.ChildAlertWithAgeDto;
 import com.safetynet.alerts.dto.FireDto;
@@ -35,10 +32,7 @@ import com.safetynet.alerts.repository.PersonsRepositoryInterface;
 import com.safetynet.alerts.service.EndpointsUrlsService;
 import com.safetynet.alerts.service.ExtractAge;
 
-@AutoConfigureMockMvc
 @ExtendWith(MockitoExtension.class)
-@WebMvcTest(EndpointsUrlsService.class)
-@SpringBootTest
 public class EndpointsUrlsServiceTest {
 
     @Mock
@@ -152,6 +146,7 @@ public class EndpointsUrlsServiceTest {
         medicalrecords.setAllergies(allergies);
         medicalrecordsList.add(medicalrecords);
 
+        // WHEN
         when(personsRepositoryInterface.getByAddress(any(String.class))).thenReturn(listPersons);
         when(medicalrecordsRepositoryInterface.getByFirstName(any(String.class))).thenReturn(medicalrecords);
 
@@ -191,7 +186,7 @@ public class EndpointsUrlsServiceTest {
         when(firestationsRepositoryInterface.getAddressByStation(8)).thenReturn(firestationList);
 
         // THEN
-        assertThat(endpointsUrlsService.listPhoneByFirestation(7)
+        assertThat(endpointsUrlsService.listPhoneByFirestation(8)
                 .getListPhonesCity()
                 .toString(), containsString("0600000000"));
     }
@@ -294,8 +289,8 @@ public class EndpointsUrlsServiceTest {
 
         // THEN
         List<FloodDto> listHomeByStation = endpointsUrlsService.listHomeByStation(stations);
-        for (FloodDto floodDton : listHomeByStation) {
-            assertThat(floodDton.getLastName(), containsString("monNom"));
+        for (FloodDto floodDto : listHomeByStation) {
+            assertThat(floodDto.getLastName(), containsString("monNom"));
         }
     }
 
@@ -338,24 +333,22 @@ public class EndpointsUrlsServiceTest {
 
         // WHEN
         when(personsRepositoryInterface.getByLastName("monNom")).thenReturn(listPersons);
-        when(medicalrecordsRepositoryInterface.getByFirstName(persons.getLastName())).thenReturn(medicalrecords);
+        when(medicalrecordsRepositoryInterface.getByFirstName(persons.getFirstName())).thenReturn(medicalrecords);
 
         // THEN
-
         for (PersonInfoDto personInfo : endpointsUrlsService.listPersonInfo("monPrenom", "monNom")) {
-            assertThat(personInfo.getLastName(), containsString("monNom"));
+            assertThat(persons.getLastName(), containsString("monNom"));
             assertThat(personInfo.getEmail(), containsString("monemail@gmail.com"));
 
             assertThat(personInfo.getMedications().toString(), containsString(medications.toString()));
             assertThat(personInfo.getAllergies().toString(), containsString(allergies.toString()));
-
         }
     }
 
     // URL communityEmail
     @Test
     @DisplayName("communityEmailTest url /communityEmail")
-    public void communityEmailTest() {
+    public void communityEmailDtoTest() {
 
         // GIVEN
         listPersons = new ArrayList<>();

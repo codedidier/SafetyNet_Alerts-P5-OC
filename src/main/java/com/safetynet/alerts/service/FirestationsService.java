@@ -54,7 +54,7 @@ public class FirestationsService implements FirestationsServiceInterface {
     @Override
     public List<Firestations> deleteFirestationToList(String address) {
 
-        logger.info("findById rèussi :" + address);
+        logger.info("deleteFirestationToList réussi :" + address);
         firestationsRepositoryInterface.deleteFirestationToList(address);
         return firestationsRepositoryInterface.getListFirestations();
     }
@@ -71,7 +71,7 @@ public class FirestationsService implements FirestationsServiceInterface {
     @Override
     public List<Firestations> getAddressByStation(int stationNumber) {
 
-        logger.info("findAddressByStation SUCCESS :" + stationNumber);
+        logger.info("getAddressByStation SUCCESS :" + stationNumber);
         return firestationsRepositoryInterface.getAddressByStation(stationNumber);
     }
 }
