@@ -72,6 +72,7 @@ public class FirestationsRepositoryTest {
         // GIVEN
         Firestations firestations = new Firestations();
         firestations.setAddress("8 MaRue");
+        firestations.setStation(8);
         List<Firestations> firestationsList = new ArrayList<Firestations>();
         firestationsList.add(firestations);
 

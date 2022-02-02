@@ -14,6 +14,9 @@ public class ExtractAgeServiceTest {
 
     private ExtractAge extractAge = new ExtractAge();
 
+    private long adults = 0;
+    private long children = 0;
+
     @Test
     @DisplayName("Test pour calculer l'âge d'une personne à partir de sa date de naissance")
     public void extractAgeBirthDate() {
@@ -61,7 +64,53 @@ public class ExtractAgeServiceTest {
         long adults = extractAge.getAge();
 
         // THEN
-        assertEquals(adults, 51);
+        assertEquals(adults, 52);
+
+    }
+
+    @Test
+    @DisplayName(value = "setChildren")
+    public void setChildren() {
+
+//GIVEN:
+        ExtractAge birthdateChild = new ExtractAge();
+        birthdateChild.setChildren(children);
+        // WHEN
+        birthdateChild.calculateAge("01/01/2011");
+        long children = extractAge.getAge();
+
+        // THEN
+        assertEquals(0, children);
+
+    }
+
+    @Test
+    @DisplayName(value = "setAdults")
+    public void setAdults() {
+
+//GIVEN:
+        ExtractAge birthdateAdults = new ExtractAge();
+        birthdateAdults.setAdults(adults);
+        int age = 22;
+        // WHEN
+        // birthdateAdults.calculateAge("01/01/2000");
+        // long adults = extractAge.getAge();
+        birthdateAdults.setAge(22);
+        // THEN
+        assertEquals(22, age);
+    }
+
+    @Test
+    @DisplayName("getListAgeCalculate")
+    public void getlistAgeCalculate() {
+        ExtractAge AgeCalculate = new ExtractAge();
+
+        AgeCalculate.setAdults(adults);
+        adults = 22;
+        AgeCalculate.setChildren(children);
+        children = 11;
+
+        AgeCalculate.getListAgeCalculate();
 
     }
 }

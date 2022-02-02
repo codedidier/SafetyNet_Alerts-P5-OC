@@ -91,6 +91,35 @@ public class MedicalrecordsServiceTest {
     }
 
     @Test
+    @DisplayName("Test updateMedicalrecordToList")
+    public void updateMedicalrecordToList() {
+        // GIVEN
+        Medicalrecords medicalrecords = new Medicalrecords();
+        List<String> medications = new ArrayList<String>();
+        medications.add("doliprane 1000g");
+        medications.add("aspirine 20mg");
+        List<String> allergies = new ArrayList<String>();
+        allergies.add("gluten");
+        allergies.add("chat");
+        List<Medicalrecords> medicalrecordList = new ArrayList<Medicalrecords>();
+        medicalrecords.setFirstName("monPrenom");
+        medicalrecords.setLastName("monNom");
+        medicalrecords.setBirthdate("01/01/2000");
+        medicalrecords.setMedications(medications);
+        medicalrecords.setAllergies(allergies);
+        medicalrecordList.add(medicalrecords);
+
+        // WHEN
+        when(medicalrecordsRepositoryInterface.updateMedicalrecordToList("monPrenommonNom", medicalrecords))
+                .thenReturn(medicalrecords);
+
+        // THEN
+        assertThat(medicalrecordsService.updateMedicalrecordToList("monPrenommonNom", medicalrecords).toString(),
+                containsString("monPrenom"));
+
+    }
+
+    @Test
     @DisplayName("Test deletePersonToList")
     public void deletePersonToList() {
 

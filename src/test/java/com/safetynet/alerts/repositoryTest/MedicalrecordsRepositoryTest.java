@@ -1,5 +1,6 @@
 package com.safetynet.alerts.repositoryTest;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
@@ -73,11 +74,16 @@ public class MedicalrecordsRepositoryTest {
 
         // WHEN
         when(database.getMedicalrecords()).thenReturn(medicalrecordList);
+        List<Medicalrecords> updateMedicalrecordToListResult = medicalrecordsRepository
+                .addMedicalrecordToList(new Medicalrecords());
+        assertSame(medicalrecordList, updateMedicalrecordToListResult);
+
         assertNull(medicalrecordsRepository.updateMedicalrecordToList("monPrenommonNom", new Medicalrecords()));
 
         // THEN
-        verify(database).getMedicalrecords();
+
         assertSame(medicalrecordList, medicalrecordsRepository.getListMedicalrecords());
+
     }
 
     @Test
@@ -116,14 +122,15 @@ public class MedicalrecordsRepositoryTest {
     @DisplayName("Test getByFirstNameAndLAstName")
     public void getByFirstNameAndLastNameTest() {
         // GIVEN
-        List<Medicalrecords> medicalrecordList = new ArrayList<Medicalrecords>();
+        List<Medicalrecords> medicalrecords = new ArrayList<Medicalrecords>();
 
         // WHEN
-        when(database.getMedicalrecords()).thenReturn(medicalrecordList);
+        when(database.getMedicalrecords()).thenReturn(medicalrecords);
         assertNull(medicalrecordsRepository.getByFirstNameAndLastName("monPrenom", "monNom"));
-
+        when(database.getMedicalrecords()).thenReturn(medicalrecords);
+        medicalrecordsRepository.getByFirstNameAndLastName("monPrenom", "monNom");
         // THEN
-        verify(database).getMedicalrecords();
-        assertSame(medicalrecordList, medicalrecordsRepository.getListMedicalrecords());
+        assertSame(medicalrecords, medicalrecordsRepository.getListMedicalrecords());
+        assertThat(medicalrecordsRepository.getByFirstNameAndLastName("monPrenom", "monNom"));
     }
 }
