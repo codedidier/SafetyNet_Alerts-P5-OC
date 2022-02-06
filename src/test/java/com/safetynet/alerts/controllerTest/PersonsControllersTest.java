@@ -69,6 +69,26 @@ public class PersonsControllersTest {
     }
 
     @Test
+    @DisplayName("Test erreur de la demande de la liste persons")
+    public void getListPersonsError() throws Exception {
+        // GIVEN
+        Persons persons = new Persons(); // creation d'un object Persons
+        List<Persons> listPersons = new ArrayList<Persons>(); // creatation de la liste Persons
+        persons.setFirstName("monPrenom");
+        persons.setLastName("monNom");
+        persons.setAddress("8 MaRue");
+        persons.setCity("MaVille");
+        persons.setZip("88888");
+        persons.setPhone("0600000000");
+        persons.setEmail("monemail@gmail.com");
+        listPersons.add(persons);
+
+        when(personsService.getListPersons()).thenReturn(null);
+
+        mockMvc.perform(get("/persons")).andReturn();
+    }
+
+    @Test
     @DisplayName("Test la demande d'ajout d'une nouvelle personne")
     public void addPersonList() throws Exception {
 

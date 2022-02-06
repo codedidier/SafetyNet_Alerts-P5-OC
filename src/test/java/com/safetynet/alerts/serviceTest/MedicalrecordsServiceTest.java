@@ -61,10 +61,11 @@ public class MedicalrecordsServiceTest {
 
         // THEN
         assertEquals(medicalrecordsService.getListMedicalrecords().size(), 1);
+        assertThat(medicalrecordsService.getListMedicalrecords().toString(), containsString("monPrenom"));
     }
 
     @Test
-    @DisplayName("Test saveMedicalrecordList ")
+    @DisplayName("Test addMedicalrecordToList ")
     public void addMedicalrecordToList() {
         // GIVEN
         Medicalrecords medicalrecords = new Medicalrecords();
@@ -87,7 +88,8 @@ public class MedicalrecordsServiceTest {
 
         // THEN
         assertEquals(medicalrecordsService.addMedicalrecordToList(medicalrecords).size(), 1);
-
+        assertThat(medicalrecordsService.addMedicalrecordToList(medicalrecords).toString(),
+                containsString("monPrenom"));
     }
 
     @Test
@@ -107,6 +109,7 @@ public class MedicalrecordsServiceTest {
         medicalrecords.setBirthdate("01/01/2000");
         medicalrecords.setMedications(medications);
         medicalrecords.setAllergies(allergies);
+        medicalrecords.setAge(22);
         medicalrecordList.add(medicalrecords);
 
         // WHEN
@@ -159,17 +162,21 @@ public class MedicalrecordsServiceTest {
         List<String> allergies = new ArrayList<String>();
         allergies.add("gluten");
         allergies.add("chat");
+        List<Medicalrecords> medicalrecordList = new ArrayList<Medicalrecords>();
         medicalrecords.setFirstName("monPrenom");
         medicalrecords.setLastName("monNom");
         medicalrecords.setBirthdate("01/01/2000");
         medicalrecords.setMedications(medications);
         medicalrecords.setAllergies(allergies);
+        medicalrecordList.add(medicalrecords);
 
         // WHEN
         when(medicalrecordsRepositoryInterface.getByFirstName("monPrenom")).thenReturn(medicalrecords);
 
         // THEN
         assertThat(medicalrecordsRepositoryInterface.getByFirstName("monPrenom").toString(),
+                containsString("monPrenom"));
+        assertThat(medicalrecordsService.getByFirstName("monPrenom").toString(),
                 containsString("monPrenom"));
 
     }

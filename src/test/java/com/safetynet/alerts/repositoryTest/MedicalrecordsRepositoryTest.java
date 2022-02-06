@@ -1,6 +1,5 @@
 package com.safetynet.alerts.repositoryTest;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
@@ -122,15 +121,14 @@ public class MedicalrecordsRepositoryTest {
     @DisplayName("Test getByFirstNameAndLAstName")
     public void getByFirstNameAndLastNameTest() {
         // GIVEN
-        List<Medicalrecords> medicalrecords = new ArrayList<Medicalrecords>();
+        List<Medicalrecords> medicalrecordsList = new ArrayList<Medicalrecords>();
 
         // WHEN
-        when(database.getMedicalrecords()).thenReturn(medicalrecords);
+        when(database.getMedicalrecords()).thenReturn(medicalrecordsList);
         assertNull(medicalrecordsRepository.getByFirstNameAndLastName("monPrenom", "monNom"));
-        when(database.getMedicalrecords()).thenReturn(medicalrecords);
-        medicalrecordsRepository.getByFirstNameAndLastName("monPrenom", "monNom");
+
         // THEN
-        assertSame(medicalrecords, medicalrecordsRepository.getListMedicalrecords());
-        assertThat(medicalrecordsRepository.getByFirstNameAndLastName("monPrenom", "monNom"));
+        verify(database).getMedicalrecords();
+        assertSame(medicalrecordsList, medicalrecordsRepository.getListMedicalrecords());
     }
 }

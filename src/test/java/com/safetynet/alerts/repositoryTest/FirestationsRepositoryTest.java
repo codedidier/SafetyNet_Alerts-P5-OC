@@ -80,9 +80,9 @@ public class FirestationsRepositoryTest {
         when(database.getFirestations()).thenReturn(firestationsList);
         assertNull(firestationsRepository.updateFirestationToList(new Firestations()));
 
-        // THEN
         verify(database).getFirestations();
         assertSame(firestationsList, firestationsRepository.getListFirestations());
+        assertTrue(firestationsRepository.getAddressByStation(8).equals(firestationsList));
     }
 
     @Test
