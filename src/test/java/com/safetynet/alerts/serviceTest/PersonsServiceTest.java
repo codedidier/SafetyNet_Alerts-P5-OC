@@ -47,6 +47,7 @@ public class PersonsServiceTest {
         persons.setZip("88888");
         persons.setPhone("0600000000");
         persons.setEmail("monemail@gmail.com");
+        persons.setAge(22);
         listPersons.add(persons);
 
         // WHEN
