@@ -192,4 +192,26 @@ public class PersonsServiceTest {
         assertEquals(personsService.getByFirstNameAndLastName("monPrenom", "monNom").size(), 1);
 
     }
+
+    @Test
+    @DisplayName("Test  getByFirstNameAndLastName")
+    public void getEmailByCity() {
+        // GIVEN
+        Persons persons = new Persons();
+        persons.setFirstName("monPrenom");
+        persons.setLastName("monNom");
+        persons.setAddress("8 MaRue");
+        persons.setCity("MaVille");
+        persons.setZip("88888");
+        persons.setPhone("0600000000");
+        persons.setEmail("monemail@gmail.com");
+        List<Persons> listPersons = new ArrayList<Persons>();
+        listPersons.add(persons);
+        // WHEN
+        when(personsRepositoryInterface.getEmailByCity("MaVille")).thenReturn(listPersons);
+
+        // THEN
+        assertEquals(personsService.getEmailByCity("MaVille").size(), 1);
+
+    }
 }

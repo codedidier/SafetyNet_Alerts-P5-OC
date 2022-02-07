@@ -100,7 +100,7 @@ public class FirestationsServiceTest {
         firestationsRepositoryInterface.deleteFirestationToList("8 MaRue");
 
         // THEN
-        assertEquals(firestationsService.getListFirestations().size(), 0);
+        assertEquals(firestationsService.deleteFirestationToList("8 MaRue").size(), 0);
 
     }
 

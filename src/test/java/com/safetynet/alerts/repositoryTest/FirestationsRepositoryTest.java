@@ -86,7 +86,7 @@ public class FirestationsRepositoryTest {
     }
 
     @Test
-    @DisplayName("Test updateFirestationToListTest")
+    @DisplayName("Test deleteFirestationToListTest")
     public void deleteFirestationToListTest() {
 
         // GIVEN
