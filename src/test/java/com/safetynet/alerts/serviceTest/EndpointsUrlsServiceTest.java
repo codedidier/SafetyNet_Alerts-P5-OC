@@ -151,12 +151,12 @@ public class EndpointsUrlsServiceTest {
         when(medicalrecordsRepositoryInterface.getByFirstName(any(String.class))).thenReturn(medicalrecords);
 
         // THEN
-        for (ChildAlertWithAgeDto childByAddressDto : endpointsUrlsService.listChildByAddress("8 MaRue")
-                .getChildren()) {
-            assertThat(childByAddressDto.getFirstName(), containsString("monPrenom"));
-            assertThat(childByAddressDto.getLastName(), containsString("monNom"));
 
+        for (ChildAlertWithAgeDto listChildByAddress : endpointsUrlsService.listChildByAddress("8 MaRue")
+                .getAdults()) {
+            assertThat(listChildByAddress.getLastName().toString(), containsString("monNom"));
         }
+
     }
 
     // URL phoneAlert
