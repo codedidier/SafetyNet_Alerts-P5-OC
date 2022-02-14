@@ -21,26 +21,33 @@ Vous trouverez ci-dessous la liste de tous les points de terminaison avec leurs 
 Pour une meilleure organisation des Endpoints, ils se regroupent en deux sections : «Gestion de données »  et  «Urgences ».
 
 Consultation de ces Endpoints avec GET:
+
 http://localhost:8080/persons 
+
 http://localhost:8080/firestations 
+
 http://localhost:8080/medicalRecords 
+
 
 Gestion de données: 
 Pour gérer tous les endpoints avec (Post, Put, Delete) relatifs aux entités (Person, FireStation, MedicalRecord).
 
-http://localhost:8080/person									     			
+http://localhost:8080/person
+
 Cet endpoint permet d’effectuer les actions suivantes via Post/Put/Delete avec HTTP :
 ● ajouter une nouvelle personne POST ;
 ● mettre à jour une personne existante: PUT /person/PrénomNom ;
 ● supprimer une personne DELETE /person/PrénomNom ;
 
 http://localhost:8080/firestation 
+
 Cet endpoint permet d’effectuer les actions suivantes via Post/Put/Delete avec HTTP :
 ● Ajout d'un mapping caserne/adresse ;
 ● Mettre à jour le numéro de la caserne de pompiers d'une adresse ;
 ● Supprimer le mapping d'une caserne ou d'une adresse.
 
 http://localhost:8080/medicalRecord 
+
 Cet endpoint permettra d’effectuer les actions suivantes via Post/Put/Delete HTTP :
 ● Ajouter un dossier médical ;
 ● Mettre à jour un dossier médical existant PUT /medicalRecord/PrénomNom ;
