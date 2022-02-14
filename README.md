@@ -103,5 +103,7 @@ SafetyNet_Alerts est développé avec la Stack Technique suivante :
   
 Rapports :
 Dans « target/site » Il y a « index.html »  en l’ouvrant dans le navigateur on peut consulter les rapports générer avec Maven et JUnit :
+	
 •	Rapport Surefire pour tous les tests unitaires.
+	
 •	Rapport JaCoCo pour couverture dans JUnit Tests.
