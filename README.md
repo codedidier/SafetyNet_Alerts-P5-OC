@@ -76,9 +76,11 @@ Cette url retourne une liste de tous les foyers desservis par la caserne.
 Nom, le numéro de téléphone et l'âge des habitants, antécédents médicaux.
   
 http://localhost:8080/personInfo?firstName=<firstName>&lastName=<lastName> 
+	
 Cette url retourne le nom, l'adresse, l'âge, l'adresse mail et les antécédents médicaux (médicaments, posologie, allergies) de chaque habitant. 
   
 http://localhost:8080/communityEmail?city=<city> 
+	
 Cette url retourne les adresses mail de tous les habitants de la ville.
   
 SafetyNet_Alerts est développé avec la Stack Technique suivante :
@@ -89,10 +91,15 @@ SafetyNet_Alerts est développé avec la Stack Technique suivante :
 - Spring Web : pour exposer les endpoints ;
  		- Spring Data JPA : pour faire de la persistance de données
 - Actuator : fournit plusieurs points de terminaison qui peuvent être utiles pour surveiller l'application.
+	
 ● Maven ; 
+	
 ● code versionné sur un repo Git ; 
+	
 ● Des tests unitaires avec JUnit ;
+	
 ● Une couverture de code mesurée avec la librairie JaCoCo ; 
+	
   
 Rapports :
 Dans « target/site » Il y a « index.html »  en l’ouvrant dans le navigateur on peut consulter les rapports générer avec Maven et JUnit :
