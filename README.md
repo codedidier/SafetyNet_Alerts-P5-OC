@@ -82,6 +82,7 @@ Cette url retourne le nom, l'adresse, l'âge, l'adresse mail et les antécédent
 http://localhost:8080/communityEmail?city=<city> 
 	
 Cette url retourne les adresses mail de tous les habitants de la ville.
+	
   
 SafetyNet_Alerts est développé avec la Stack Technique suivante :
 	
@@ -102,6 +103,7 @@ SafetyNet_Alerts est développé avec la Stack Technique suivante :
 	
   
 Rapports :
+	
 Dans « target/site » Il y a « index.html »  en l’ouvrant dans le navigateur on peut consulter les rapports générer avec Maven et JUnit :
 	
 •	Rapport Surefire pour tous les tests unitaires.
