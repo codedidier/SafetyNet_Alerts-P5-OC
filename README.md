@@ -54,7 +54,9 @@ Cet endpoint permettra d’effectuer les actions suivantes via Post/Put/Delete H
 ● Supprimer un dossier médical DELETE /medicalRecord/PrénomNom 
 
 Urgences : pour consulter les endpoints relatifs aux URLs:
+
 http://localhost:8080/firestation?stationNumber=<station_number> 
+
 Cette url retourne une liste des personnes couvertes par la caserne de pompiers correspondante.
  Prénom, nom, adresse, numéro de téléphone, décompte du nombre d'adultes et du nombre d'enfants 
  
@@ -63,6 +65,7 @@ Cette url retourne une liste d'enfants habitant à cette adresse.
 Prénom, nom de famille de chaque enfant, son âge et une liste des autres membres du foyer.
   
 http://localhost:8080/phoneAlert?firestation=<firestation_number> 
+	
 Cette url retourne une liste des numéros de téléphone des résidents desservis par la caserne de pompiers. 
   
 http://localhost:8080/fire?address=<address> 
@@ -79,6 +82,7 @@ http://localhost:8080/communityEmail?city=<city>
 Cette url retourne les adresses mail de tous les habitants de la ville.
   
 SafetyNet_Alerts est développé avec la Stack Technique suivante :
+	
 ● Sring Boot 2.6.2 ;
 	Avec les dépendances: 
 - Lombok : permet d’optimiser certaines classes ;
