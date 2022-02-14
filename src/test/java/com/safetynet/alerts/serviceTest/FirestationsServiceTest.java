@@ -63,10 +63,10 @@ public class FirestationsServiceTest {
         firestationsList.add(firestations);
 
         // WHEN
-        when(firestationsRepositoryInterface.addFirestationToList(firestations)).thenReturn(firestationsList);
+        when(firestationsRepositoryInterface.getListFirestations()).thenReturn(firestationsList);
 
         // THEN
-        assertEquals(firestationsService.addFirestationToList(firestations).size(), 1);
+        assertEquals(firestationsService.getListFirestations().size(), 1);
     }
 
     @Test

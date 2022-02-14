@@ -39,7 +39,7 @@ public class FirestationsService implements FirestationsServiceInterface {
 
         logger.info("Firestations saved SUCCESS :" + firestations);
         firestationsRepositoryInterface.addFirestationToList(firestations);
-        return firestationsRepositoryInterface.addFirestationToList(firestations);
+        return firestationsRepositoryInterface.getListFirestations();
     }
 
 //PUT /firestation

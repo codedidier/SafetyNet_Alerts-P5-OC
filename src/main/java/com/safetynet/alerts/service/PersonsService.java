@@ -42,7 +42,7 @@ public class PersonsService implements PersonsServiceInterface {
         return personsRepositoryInterface.getListPersons();
     }
 
-//UPDATE /person
+//P /person
     @Override
     public Persons updatePersonToList(String firstNameAndLastName, Persons persons) {
 
