@@ -84,6 +84,7 @@ http://localhost:8080/communityEmail?city=<city>
 Cette url retourne les adresses mail de tous les habitants de la ville.
 	
   
+
 SafetyNet_Alerts est développé avec la Stack Technique suivante :
 	
 ● Sring Boot 2.6.2 ;
@@ -92,6 +93,7 @@ SafetyNet_Alerts est développé avec la Stack Technique suivante :
 - Spring Web : pour exposer les endpoints ;
  		- Spring Data JPA : pour faire de la persistance de données
 - Actuator : fournit plusieurs points de terminaison qui peuvent être utiles pour surveiller l'application.
+		Accessible à l'adresse : http://localhost:8080/actuator
 	
 ● Maven ; 
 	
