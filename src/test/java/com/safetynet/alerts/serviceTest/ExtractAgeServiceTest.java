@@ -5,8 +5,8 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 
-import com.safetynet.alerts.service.ExtractAge;
-import com.safetynet.alerts.service.MedicalrecordsServiceInterface;
+import com.safetynet.alerts.ageCalculator.ExtractAge;
+import com.safetynet.alerts.serviceInterface.MedicalrecordsServiceInterface;
 
 public class ExtractAgeServiceTest {
 

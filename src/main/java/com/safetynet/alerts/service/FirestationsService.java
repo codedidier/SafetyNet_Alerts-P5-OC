@@ -2,18 +2,18 @@ package com.safetynet.alerts.service;
 
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.safetynet.alerts.model.Firestations;
-import com.safetynet.alerts.repository.FirestationsRepositoryInterface;
+import com.safetynet.alerts.repositoryInterface.FirestationsRepositoryInterface;
+import com.safetynet.alerts.serviceInterface.FirestationsServiceInterface;
 
+import lombok.extern.log4j.Log4j2;
+
+@Log4j2
 @Service
 public class FirestationsService implements FirestationsServiceInterface {
-
-    private static final Logger logger = LogManager.getLogger("FirestationsService");
 
     @Autowired
     FirestationsRepositoryInterface firestationsRepositoryInterface;
@@ -28,7 +28,7 @@ public class FirestationsService implements FirestationsServiceInterface {
     @Override
     public List<Firestations> getListFirestations() {
 
-        logger.info("getListFirestations SUCCESS :");
+        log.info("getListFirestations SUCCESS :");
 
         return firestationsRepositoryInterface.getListFirestations();
     }
@@ -37,7 +37,7 @@ public class FirestationsService implements FirestationsServiceInterface {
     @Override
     public List<Firestations> addFirestationToList(Firestations firestations) {
 
-        logger.info("Firestations saved SUCCESS :" + firestations);
+        log.info("Firestations saved SUCCESS :" + firestations);
         firestationsRepositoryInterface.addFirestationToList(firestations);
         return firestationsRepositoryInterface.getListFirestations();
     }
@@ -46,7 +46,7 @@ public class FirestationsService implements FirestationsServiceInterface {
     @Override
     public Firestations updateFirestationToList(Firestations firestations) {
 
-        logger.info("updateFirestationToList rèussis" + firestations);
+        log.info("updateFirestationToList rèussis" + firestations);
         return firestationsRepositoryInterface.updateFirestationToList(firestations);
     }
 
@@ -54,7 +54,7 @@ public class FirestationsService implements FirestationsServiceInterface {
     @Override
     public List<Firestations> deleteFirestationToList(String address) {
 
-        logger.info("deleteFirestationToList réussi :" + address);
+        log.info("deleteFirestationToList réussi :" + address);
         firestationsRepositoryInterface.deleteFirestationToList(address);
         return firestationsRepositoryInterface.getListFirestations();
     }
@@ -63,7 +63,7 @@ public class FirestationsService implements FirestationsServiceInterface {
     @Override
     public Firestations getById(String firestationAddress) {
 
-        logger.info("getById OK :" + firestationAddress);
+        log.info("getById OK :" + firestationAddress);
         return firestationsRepositoryInterface.getById(firestationAddress);
 
     }
@@ -71,7 +71,7 @@ public class FirestationsService implements FirestationsServiceInterface {
     @Override
     public List<Firestations> getAddressByStation(int stationNumber) {
 
-        logger.info("getAddressByStation SUCCESS :" + stationNumber);
+        log.info("getAddressByStation SUCCESS :" + stationNumber);
         return firestationsRepositoryInterface.getAddressByStation(stationNumber);
     }
 }

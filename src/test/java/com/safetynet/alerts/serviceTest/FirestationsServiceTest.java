@@ -16,7 +16,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.safetynet.alerts.model.Firestations;
-import com.safetynet.alerts.repository.FirestationsRepositoryInterface;
+import com.safetynet.alerts.repositoryInterface.FirestationsRepositoryInterface;
 import com.safetynet.alerts.service.FirestationsService;
 
 @ExtendWith(MockitoExtension.class)

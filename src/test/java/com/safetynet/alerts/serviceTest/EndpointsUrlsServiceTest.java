@@ -19,6 +19,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import com.safetynet.alerts.ageCalculator.ExtractAge;
 import com.safetynet.alerts.dto.ChildAlertWithAgeDto;
 import com.safetynet.alerts.dto.FireDto;
 import com.safetynet.alerts.dto.FloodDto;
@@ -26,11 +27,10 @@ import com.safetynet.alerts.dto.PersonInfoDto;
 import com.safetynet.alerts.model.Firestations;
 import com.safetynet.alerts.model.Medicalrecords;
 import com.safetynet.alerts.model.Persons;
-import com.safetynet.alerts.repository.FirestationsRepositoryInterface;
-import com.safetynet.alerts.repository.MedicalrecordsRepositoryInterface;
-import com.safetynet.alerts.repository.PersonsRepositoryInterface;
+import com.safetynet.alerts.repositoryInterface.FirestationsRepositoryInterface;
+import com.safetynet.alerts.repositoryInterface.MedicalrecordsRepositoryInterface;
+import com.safetynet.alerts.repositoryInterface.PersonsRepositoryInterface;
 import com.safetynet.alerts.service.EndpointsUrlsService;
-import com.safetynet.alerts.service.ExtractAge;
 
 @ExtendWith(MockitoExtension.class)
 public class EndpointsUrlsServiceTest {

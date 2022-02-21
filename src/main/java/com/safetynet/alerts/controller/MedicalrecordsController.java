@@ -3,8 +3,6 @@ package com.safetynet.alerts.controller;
 import java.text.ParseException;
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,12 +13,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.safetynet.alerts.model.Medicalrecords;
-import com.safetynet.alerts.service.MedicalrecordsServiceInterface;
+import com.safetynet.alerts.serviceInterface.MedicalrecordsServiceInterface;
 
+import lombok.extern.log4j.Log4j2;
+
+@Log4j2
 @RestController
 public class MedicalrecordsController {
-
-    private static final Logger logger = LogManager.getLogger("MedicalrecordsController");
 
     @Autowired
     MedicalrecordsServiceInterface medicalrecordsServiceInterface;
@@ -32,9 +31,9 @@ public class MedicalrecordsController {
 
         List<Medicalrecords> getMedicalrecords = medicalrecordsServiceInterface.getListMedicalrecords();
         if (getMedicalrecords != null) {
-            logger.info("getListMedicalrecords GET request SUCCESSFUL");
+            log.info("getListMedicalrecords GET request SUCCESSFUL");
         } else {
-            logger.error("getListMedicalRecords request GET is FAILED");
+            log.error("getListMedicalRecords request GET is FAILED");
         }
         return getMedicalrecords;
     }
@@ -45,9 +44,9 @@ public class MedicalrecordsController {
 
         List<Medicalrecords> newMedicalFile = medicalrecordsServiceInterface.addMedicalrecordToList(medicalrecords);
         if (newMedicalFile != null) {
-            logger.info("addMedicalrecord POST request SUCCESSFUL");
+            log.info("addMedicalrecord POST request SUCCESSFUL");
         } else {
-            logger.error("addMedicalrecord POST request FAILED");
+            log.error("addMedicalrecord POST request FAILED");
         }
         return newMedicalFile;
     }
@@ -60,9 +59,9 @@ public class MedicalrecordsController {
         Medicalrecords updateMedical = medicalrecordsServiceInterface.updateMedicalrecordToList(firstNameAndLastName,
                 medicalrecords);
         if (updateMedical != null) {
-            logger.info("updateMedicalrecord PUT request SUCCESSFUL");
+            log.info("updateMedicalrecord PUT request SUCCESSFUL");
         } else {
-            logger.error("updateMedicalrecord PUT request FAILED");
+            log.error("updateMedicalrecord PUT request FAILED");
         }
         return updateMedical;
     }
@@ -71,7 +70,7 @@ public class MedicalrecordsController {
     @DeleteMapping("/medicalRecord/{firstNameAndLastName}")
     public void deleteMedicalrecord(@PathVariable String firstNameAndLastName) {
 
-        logger.info("deleteMedicalrecord DELETE request SUCCESSFUL");
+        log.info("deleteMedicalrecord DELETE request SUCCESSFUL");
         medicalrecordsServiceInterface.deleteMedicalrecordToList(firstNameAndLastName);
 
     }

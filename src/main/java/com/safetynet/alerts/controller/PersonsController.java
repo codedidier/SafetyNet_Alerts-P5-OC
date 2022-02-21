@@ -2,8 +2,6 @@ package com.safetynet.alerts.controller;
 
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,12 +12,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.safetynet.alerts.model.Persons;
-import com.safetynet.alerts.service.PersonsServiceInterface;
+import com.safetynet.alerts.serviceInterface.PersonsServiceInterface;
 
+import lombok.extern.log4j.Log4j2;
+
+@Log4j2
 @RestController
 public class PersonsController {
-
-    private static final Logger logger = LogManager.getLogger("PersonsController");
 
     @Autowired
     PersonsServiceInterface personsServiceInterface;
@@ -31,9 +30,9 @@ public class PersonsController {
 
         List<Persons> getPersons = personsServiceInterface.getListPersons();
         if (getPersons != null) {
-            logger.info("getListPersons GET demande réussie");
+            log.info("getListPersons GET demande réussie");
         } else {
-            logger.error("getListPersons GET demande échouée");
+            log.error("getListPersons GET demande échouée");
         }
 
         return getPersons;
@@ -45,9 +44,9 @@ public class PersonsController {
 
         List<Persons> newPers = personsServiceInterface.addNewPersonToList(persons);
         if (newPers != null) {
-            logger.info("addPerson POST demande réussie");
+            log.info("addPerson POST demande réussie");
         } else {
-            logger.error("addPerson POST demande échouée");
+            log.error("addPerson POST demande échouée");
         }
         return newPers;
     }
@@ -58,9 +57,9 @@ public class PersonsController {
 
         Persons personUpdate = personsServiceInterface.updatePersonToList(firstNameAndLastName, person);
         if (personUpdate != null) {
-            logger.info("updatePerson PUT demande réussie");
+            log.info("updatePerson PUT demande réussie");
         } else {
-            logger.error("updatePerson PUT demande échouée");
+            log.error("updatePerson PUT demande échouée");
         }
         return personUpdate;
     }
@@ -69,7 +68,7 @@ public class PersonsController {
     @DeleteMapping(value = "/person/{firstNameAndLastName}")
     public List<Persons> deletePerson(@PathVariable String firstNameAndLastName) {
 
-        logger.info("deletePerson DELETE demande réussie");
+        log.info("deletePerson DELETE demande réussie");
         return personsServiceInterface.deletePersonToList(firstNameAndLastName);
 
     }

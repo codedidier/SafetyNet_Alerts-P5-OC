@@ -3,8 +3,6 @@ package com.safetynet.alerts.controller;
 import java.text.ParseException;
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,10 +17,11 @@ import com.safetynet.alerts.dto.PersonInfoDto;
 import com.safetynet.alerts.dto.PhoneAlertDto;
 import com.safetynet.alerts.service.EndpointsUrlsService;
 
+import lombok.extern.log4j.Log4j2;
+
+@Log4j2
 @RestController
 public class EndpointsUrlsController {
-
-    private static final Logger logger = LogManager.getLogger("EndpointsUrlsController");
 
     @Autowired
     EndpointsUrlsService endpointsUrlsService;
@@ -32,7 +31,7 @@ public class EndpointsUrlsController {
     public FirestationsPersonsDto listPersonsByStation(@RequestParam(value = "stationNumber") int stationNumber)
             throws ParseException {
 
-        logger.info("listPersonsByStation");
+        log.info("listPersonsByStation");
         return endpointsUrlsService.listPersonsByStation(stationNumber);
     }
 
@@ -40,7 +39,7 @@ public class EndpointsUrlsController {
     @GetMapping(value = "/childAlert")
     public ChildAlertDto listChildByAddress(@RequestParam(value = "address") String address) throws ParseException {
 
-        logger.info("listChildByAddress");
+        log.info("listChildByAddress");
         return endpointsUrlsService.listChildByAddress(address);
     }
 
@@ -48,7 +47,7 @@ public class EndpointsUrlsController {
     @GetMapping(value = "/phoneAlert")
     public PhoneAlertDto listPhoneByFirestation(@RequestParam(value = "firestation") int firestation) {
 
-        logger.info("listPhoneByFirestation");
+        log.info("listPhoneByFirestation");
         return endpointsUrlsService.listPhoneByFirestation(firestation);
     }
 
@@ -57,7 +56,7 @@ public class EndpointsUrlsController {
     public FireAddressDto listPersonsByAddressAndStationNumber(@RequestParam(value = "address") String address)
             throws ParseException {
 
-        logger.info("listPersonsByAddressAndStationNumber");
+        log.info("listPersonsByAddressAndStationNumber");
         return endpointsUrlsService.listPersonsByAddressAndStationNumber(address);
     }
 
@@ -66,7 +65,7 @@ public class EndpointsUrlsController {
     public List<FloodDto> listHomeByStation(@RequestParam(value = "stations") List<Integer> stations)
             throws ParseException {
 
-        logger.info("listFamilyByStation");
+        log.info("listFamilyByStation");
         return endpointsUrlsService.listHomeByStation(stations);
     }
 
@@ -75,7 +74,7 @@ public class EndpointsUrlsController {
     public List<PersonInfoDto> listPersonInfo(@RequestParam(value = "firstName") String firstName,
             @RequestParam(value = "lastName") String lastName) throws ParseException {
 
-        logger.info("listPersonInfo");
+        log.info("listPersonInfo");
         return endpointsUrlsService.listPersonInfo(firstName, lastName);
     }
 
@@ -83,7 +82,7 @@ public class EndpointsUrlsController {
     @GetMapping(value = "/communityEmail")
     public CommunityEmailDto listEmailsByCity(@RequestParam(value = "city") String city) {
 
-        logger.info("allEmailsByCity");
+        log.info("allEmailsByCity");
         return endpointsUrlsService.listEmailsByCity(city);
     }
 }

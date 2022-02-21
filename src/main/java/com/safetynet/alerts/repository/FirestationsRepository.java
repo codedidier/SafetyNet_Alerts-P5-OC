@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.safetynet.alerts.Database;
 import com.safetynet.alerts.model.Firestations;
+import com.safetynet.alerts.repositoryInterface.FirestationsRepositoryInterface;
 
 import lombok.Data;
 

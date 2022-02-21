@@ -1,4 +1,4 @@
-package com.safetynet.alerts.service;
+package com.safetynet.alerts.ageCalculator;
 
 import java.time.LocalDate;
 import java.time.Period;

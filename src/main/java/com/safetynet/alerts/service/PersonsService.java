@@ -2,21 +2,18 @@ package com.safetynet.alerts.service;
 
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.safetynet.alerts.model.Persons;
-import com.safetynet.alerts.repository.PersonsRepositoryInterface;
+import com.safetynet.alerts.repositoryInterface.PersonsRepositoryInterface;
+import com.safetynet.alerts.serviceInterface.PersonsServiceInterface;
 
-import lombok.Data;
+import lombok.extern.log4j.Log4j2;
 
-@Data
+@Log4j2
 @Service
 public class PersonsService implements PersonsServiceInterface {
-
-    private static final Logger logger = LogManager.getLogger("PersonsService");
 
     @Autowired
     PersonsRepositoryInterface personsRepositoryInterface;
@@ -37,16 +34,16 @@ public class PersonsService implements PersonsServiceInterface {
     @Override
     public List<Persons> addNewPersonToList(Persons persons) {
 
-        logger.info("Person added REUSSIS :" + persons);
+        log.info("Person added REUSSIS :" + persons);
         personsRepositoryInterface.addNewPersonToList(persons);
         return personsRepositoryInterface.getListPersons();
     }
 
-//P /person
+//PUT /person
     @Override
     public Persons updatePersonToList(String firstNameAndLastName, Persons persons) {
 
-        logger.info("updatePersonToList REUSSIS :" + persons);
+        log.info("updatePersonToList REUSSIS :" + persons);
         return personsRepositoryInterface.updatePersonToList(firstNameAndLastName, persons);
     }
 
@@ -54,7 +51,7 @@ public class PersonsService implements PersonsServiceInterface {
     @Override
     public List<Persons> deletePersonToList(String firstNameAndLastName) {
 
-        logger.info("deletePersonToList REUSSIS :" + firstNameAndLastName);
+        log.info("deletePersonToList REUSSIS :" + firstNameAndLastName);
         personsRepositoryInterface.deletePersonToList(firstNameAndLastName);
         return personsRepositoryInterface.getListPersons();
     }
@@ -63,7 +60,7 @@ public class PersonsService implements PersonsServiceInterface {
     @Override
     public List<Persons> getByAddress(String address) {
 
-        logger.info("getByAddress REUSSIS :" + address);
+        log.info("getByAddress REUSSIS :" + address);
         return personsRepositoryInterface.getByAddress(address);
     }
 
@@ -71,7 +68,7 @@ public class PersonsService implements PersonsServiceInterface {
     @Override
     public List<Persons> getByLastName(String lastName) {
 
-        logger.info("getByAddress REUSSIS :" + lastName);
+        log.info("getByAddress REUSSIS :" + lastName);
         return personsRepositoryInterface.getByLastName(lastName);
     }
 
@@ -79,7 +76,7 @@ public class PersonsService implements PersonsServiceInterface {
     @Override
     public List<Persons> getByFirstNameAndLastName(String firstName, String lastName) {
 
-        logger.info("getByFirstNameAndLastName REUSSIS :" + (firstName + lastName));
+        log.info("getByFirstNameAndLastName REUSSIS :" + (firstName + lastName));
         return personsRepositoryInterface.getByFirstNameAndLastName(firstName, lastName);
     }
 
@@ -87,7 +84,7 @@ public class PersonsService implements PersonsServiceInterface {
     @Override
     public List<Persons> getEmailByCity(String city) {
 
-        logger.info("getByEmailCity REUSSIS :" + city);
+        log.info("getByEmailCity REUSSIS :" + city);
         return personsRepositoryInterface.getEmailByCity(city);
     }
 }

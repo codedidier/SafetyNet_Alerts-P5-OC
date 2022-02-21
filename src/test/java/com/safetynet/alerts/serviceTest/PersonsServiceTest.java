@@ -16,7 +16,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.safetynet.alerts.model.Persons;
-import com.safetynet.alerts.repository.PersonsRepositoryInterface;
+import com.safetynet.alerts.repositoryInterface.PersonsRepositoryInterface;
 import com.safetynet.alerts.service.PersonsService;
 
 @ExtendWith(MockitoExtension.class)
@@ -118,12 +118,12 @@ public class PersonsServiceTest {
         persons.setZip("88888");
         persons.setPhone("0600000000");
         persons.setEmail("monemail@gmail.com");
-        personsService.addNewPersonToList(persons);
-
+        List<Persons> listPersons = new ArrayList<Persons>();
+        listPersons.add(persons);
         // WHEN
-
+        when(personsRepositoryInterface.getListPersons()).thenReturn(listPersons);
         // THEN
-        assertEquals(personsService.deletePersonToList("monPrenommonNom").size(), 0);
+        assertEquals(personsService.deletePersonToList("monPrenommonNom").size(), 1);
 
     }
 

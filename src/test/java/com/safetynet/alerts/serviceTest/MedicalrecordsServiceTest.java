@@ -20,7 +20,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.safetynet.alerts.model.Medicalrecords;
-import com.safetynet.alerts.repository.MedicalrecordsRepositoryInterface;
+import com.safetynet.alerts.repositoryInterface.MedicalrecordsRepositoryInterface;
 import com.safetynet.alerts.service.MedicalrecordsService;
 
 @ExtendWith(MockitoExtension.class)

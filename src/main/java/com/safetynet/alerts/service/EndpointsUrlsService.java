@@ -4,12 +4,11 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.safetynet.alerts.Exception.NoFoundException;
+import com.safetynet.alerts.ageCalculator.ExtractAge;
 import com.safetynet.alerts.dto.ChildAlertDto;
 import com.safetynet.alerts.dto.ChildAlertWithAgeDto;
 import com.safetynet.alerts.dto.CommunityEmailDto;
@@ -22,14 +21,15 @@ import com.safetynet.alerts.dto.PhoneAlertDto;
 import com.safetynet.alerts.model.Firestations;
 import com.safetynet.alerts.model.Medicalrecords;
 import com.safetynet.alerts.model.Persons;
-import com.safetynet.alerts.repository.FirestationsRepositoryInterface;
-import com.safetynet.alerts.repository.MedicalrecordsRepositoryInterface;
-import com.safetynet.alerts.repository.PersonsRepositoryInterface;
+import com.safetynet.alerts.repositoryInterface.FirestationsRepositoryInterface;
+import com.safetynet.alerts.repositoryInterface.MedicalrecordsRepositoryInterface;
+import com.safetynet.alerts.repositoryInterface.PersonsRepositoryInterface;
 
+import lombok.extern.log4j.Log4j2;
+
+@Log4j2
 @Service
 public class EndpointsUrlsService {
-
-    private static final Logger logger = LogManager.getLogger("EndpointsUrlsService");
 
     @Autowired
     PersonsRepositoryInterface personsRepositoryInterface;
@@ -62,7 +62,7 @@ public class EndpointsUrlsService {
                 extractAge.calculateAge(medicalrecords.getBirthdate());
             }
         }
-        logger.info("listPersonsByStation OK :" + stationNumber);
+        log.info("listPersonsByStation OK :" + stationNumber);
         return new FirestationsPersonsDto(listPersonsStation, extractAge.getAdults(), extractAge.getChildren());
     }
 
@@ -97,7 +97,7 @@ public class EndpointsUrlsService {
         }
         childAlertDto.setChildren(childList);
         childAlertDto.setAdults(adultsList);
-        logger.info("listChildByAddress OK :" + address);
+        log.info("listChildByAddress OK :" + address);
         return childAlertDto;
     }
 
@@ -112,7 +112,7 @@ public class EndpointsUrlsService {
         for (Persons persons : listPersons) {
             listPhones.add(persons.getPhone());
         }
-        logger.info("listPhoneByFirestation OK :" + firestation);
+        log.info("listPhoneByFirestation OK :" + firestation);
         return new PhoneAlertDto(listPhones);
     }
 
@@ -136,7 +136,7 @@ public class EndpointsUrlsService {
                         medicalrecords.getAllergies()));
 
             }
-            logger.info("listPersonsByAddressAndStationNumber OK :" + address);
+            log.info("listPersonsByAddressAndStationNumber OK :" + address);
             return new FireAddressDto(firestationNumber, listPersonsByAddress);
         } else {
             throw new NoFoundException("listPersonsByAddressAndStationNumber Echec :" + address);
@@ -168,7 +168,7 @@ public class EndpointsUrlsService {
                         .getMedications(), medicalrecords.getAllergies(), persons.getPhone(), extractAge.getAge()));
             }
         }
-        logger.info("listHomeByStation OK :" + stations);
+        log.info("listHomeByStation OK :" + stations);
         return floodDto;
     }
 
@@ -187,7 +187,7 @@ public class EndpointsUrlsService {
                     .add(new PersonInfoDto(persons.getLastName(), persons.getAddress(), extractAge.getAge(), persons
                             .getEmail(), medicalrecords.getMedications(), medicalrecords.getAllergies()));
         }
-        logger.info("listPersonInfo OK :" + (firstName + lastName));
+        log.info("listPersonInfo OK :" + (firstName + lastName));
         return personInfoDtoList;
     }
 
@@ -202,7 +202,7 @@ public class EndpointsUrlsService {
         for (Persons persons : listPersons) {
             listEmails.add(persons.getEmail());
         }
-        logger.info("listEmailsByCity OK :" + city);
+        log.info("listEmailsByCity OK :" + city);
         return new CommunityEmailDto(listEmails);
     }
 }

@@ -2,8 +2,6 @@ package com.safetynet.alerts.controller;
 
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,12 +12,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.safetynet.alerts.model.Firestations;
-import com.safetynet.alerts.service.FirestationsServiceInterface;
+import com.safetynet.alerts.serviceInterface.FirestationsServiceInterface;
 
+import lombok.extern.log4j.Log4j2;
+
+@Log4j2
 @RestController
 public class FirestationsController {
-
-    private static final Logger logger = LogManager.getLogger("FirestationsController");
 
     @Autowired
     private FirestationsServiceInterface firestationsServiceInterface;
@@ -30,9 +29,9 @@ public class FirestationsController {
 
         List<Firestations> getFirestations = firestationsServiceInterface.getListFirestations();
         if (getFirestations != null) {
-            logger.info("getFirestations GET demande rèussis");
+            log.info("getFirestations GET demande rèussis");
         } else {
-            logger.error("getFirestations GET demande FAILED");
+            log.error("getFirestations GET demande FAILED");
         }
         return getFirestations;
     }
@@ -43,9 +42,9 @@ public class FirestationsController {
 
         List<Firestations> addFirestation = firestationsServiceInterface.addFirestationToList(firestations);
         if (addFirestation != null) {
-            logger.info("addFirestation POST demande rèussis");
+            log.info("addFirestation POST demande rèussis");
         } else {
-            logger.error("addFirestation POST demande FAILED");
+            log.error("addFirestation POST demande FAILED");
         }
         return addFirestation;
     }
@@ -56,9 +55,9 @@ public class FirestationsController {
 
         Firestations updateFirestation = firestationsServiceInterface.updateFirestationToList(firestations);
         if (updateFirestation != null) {
-            logger.info("updateFirestation PUT demande rèussis");
+            log.info("updateFirestation PUT demande rèussis");
         } else {
-            logger.error("updateFirestation PUT demande FAILED");
+            log.error("updateFirestation PUT demande FAILED");
         }
         return updateFirestation;
     }
@@ -67,7 +66,7 @@ public class FirestationsController {
     @DeleteMapping(value = "/firestation/{address}")
     public void deleteFirestation(@PathVariable String address) {
 
-        logger.info("deleteFirestation DELETE demande rèussis");
+        log.info("deleteFirestation DELETE demande rèussis");
         firestationsServiceInterface.deleteFirestationToList(address);
     }
 }

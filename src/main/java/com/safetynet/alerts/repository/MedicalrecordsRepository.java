@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.safetynet.alerts.Database;
 import com.safetynet.alerts.model.Medicalrecords;
+import com.safetynet.alerts.repositoryInterface.MedicalrecordsRepositoryInterface;
 
 @Repository
 public class MedicalrecordsRepository implements MedicalrecordsRepositoryInterface {

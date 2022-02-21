@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.safetynet.alerts.Database;
 import com.safetynet.alerts.model.Persons;
+import com.safetynet.alerts.repositoryInterface.PersonsRepositoryInterface;
 
 @Repository
 public class PersonsRepository implements PersonsRepositoryInterface {

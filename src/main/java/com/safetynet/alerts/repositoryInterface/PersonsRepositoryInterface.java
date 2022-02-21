@@ -1,12 +1,12 @@
-package com.safetynet.alerts.service;
+package com.safetynet.alerts.repositoryInterface;
 
 import java.util.List;
 
 import com.safetynet.alerts.model.Persons;
 
-public interface PersonsServiceInterface {
+public interface PersonsRepositoryInterface {
 
-    // GET /persons
+//GET /persons
     List<Persons> getListPersons();
 
 //POST /person
@@ -16,17 +16,17 @@ public interface PersonsServiceInterface {
     Persons updatePersonToList(String firstNameAndLastName, Persons persons);
 
 //DELETE /person
-    List<Persons> deletePersonToList(String firstNameAndLastName);
+    void deletePersonToList(String firstNameAndLastName);
+
+//Recherche lastName pour les URLS
+    List<Persons> getByLastName(String lastName);
+
+//Recherche firstName and lastName pour les URLS
+    List<Persons> getByFirstNameAndLastName(String firstName, String lastName);
 
 //Recherche Address pour les URLS
     List<Persons> getByAddress(String address);
 
-//Recherche LastName pour les URLS
-    List<Persons> getByLastName(String lastName);
-
-//Recherche FirstNameAndLastName pour les URLS
-    List<Persons> getByFirstNameAndLastName(String firstName, String lastName);
-
-//Recherche EmailByCity pour les URLS
+//Recherche Email par city pour les URLS
     List<Persons> getEmailByCity(String city);
 }
