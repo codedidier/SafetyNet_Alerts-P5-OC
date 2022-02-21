@@ -1,0 +1,52 @@
+[INFO ] 2022-02-21 17:30:40.073 [restartedMain] SafetyNetAlertsApplication (55)  - Starting SafetyNetAlertsApplication using Java 16.0.1 on DESKTOP-SUJD6MH with PID 15164 (C:\Users\didie\git\SafetyNet_Alerts-P5-OC\target\classes started by didier in C:\Users\didie\git\SafetyNet_Alerts-P5-OC)
+[INFO ] 2022-02-21 17:30:40.078 [restartedMain] SafetyNetAlertsApplication (635)  - No active profile set, falling back to default profiles: default
+[INFO ] 2022-02-21 17:30:40.112 [restartedMain] DevToolsPropertyDefaultsPostProcessor (255)  - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+[INFO ] 2022-02-21 17:30:40.112 [restartedMain] DevToolsPropertyDefaultsPostProcessor (255)  - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+[INFO ] 2022-02-21 17:30:40.865 [restartedMain] TomcatWebServer (108)  - Tomcat initialized with port(s): 8080 (http)
+[INFO ] 2022-02-21 17:30:40.877 [restartedMain] Http11NioProtocol (173)  - Initializing ProtocolHandler ["http-nio-8080"]
+[INFO ] 2022-02-21 17:30:40.878 [restartedMain] StandardService (173)  - Starting service [Tomcat]
+[INFO ] 2022-02-21 17:30:40.878 [restartedMain] StandardEngine (173)  - Starting Servlet engine: [Apache Tomcat/9.0.56]
+[INFO ] 2022-02-21 17:30:40.936 [restartedMain] [/] (173)  - Initializing Spring embedded WebApplicationContext
+[INFO ] 2022-02-21 17:30:40.936 [restartedMain] ServletWebServerApplicationContext (290)  - Root WebApplicationContext: initialization completed in 824 ms
+[DEBUG] 2022-02-21 17:30:41.181 [restartedMain] RequestMappingHandlerAdapter (625)  - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+[DEBUG] 2022-02-21 17:30:41.226 [restartedMain] RequestMappingHandlerMapping (367)  - 21 mappings in 'requestMappingHandlerMapping'
+[DEBUG] 2022-02-21 17:30:41.242 [restartedMain] SimpleUrlHandlerMapping (188)  - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+[DEBUG] 2022-02-21 17:30:41.247 [restartedMain] ExceptionHandlerExceptionResolver (307)  - ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
+[WARN ] 2022-02-21 17:30:41.271 [restartedMain] ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration (106)  - Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
+[INFO ] 2022-02-21 17:30:41.403 [restartedMain] OptionalLiveReloadServer (58)  - LiveReload server is running on port 35729
+[INFO ] 2022-02-21 17:30:41.406 [restartedMain] EndpointLinksResolver (58)  - Exposing 3 endpoint(s) beneath base path '/actuator'
+[INFO ] 2022-02-21 17:30:41.422 [restartedMain] Http11NioProtocol (173)  - Starting ProtocolHandler ["http-nio-8080"]
+[INFO ] 2022-02-21 17:30:41.451 [restartedMain] TomcatWebServer (220)  - Tomcat started on port(s): 8080 (http) with context path ''
+[INFO ] 2022-02-21 17:30:41.462 [restartedMain] SafetyNetAlertsApplication (61)  - Started SafetyNetAlertsApplication in 1.619 seconds (JVM running for 2.354)
+[INFO ] 2022-02-21 17:30:43.359 [RMI TCP Connection(3)-127.0.0.1] [/] (173)  - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[INFO ] 2022-02-21 17:30:43.359 [RMI TCP Connection(3)-127.0.0.1] DispatcherServlet (525)  - Initializing Servlet 'dispatcherServlet'
+[DEBUG] 2022-02-21 17:30:43.360 [RMI TCP Connection(3)-127.0.0.1] DispatcherServlet (520)  - Detected StandardServletMultipartResolver
+[DEBUG] 2022-02-21 17:30:43.360 [RMI TCP Connection(3)-127.0.0.1] DispatcherServlet (544)  - Detected AcceptHeaderLocaleResolver
+[DEBUG] 2022-02-21 17:30:43.360 [RMI TCP Connection(3)-127.0.0.1] DispatcherServlet (569)  - Detected FixedThemeResolver
+[DEBUG] 2022-02-21 17:30:43.360 [RMI TCP Connection(3)-127.0.0.1] DispatcherServlet (719)  - Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@282374d
+[DEBUG] 2022-02-21 17:30:43.360 [RMI TCP Connection(3)-127.0.0.1] DispatcherServlet (783)  - Detected org.springframework.web.servlet.support.SessionFlashMapManager@436bbcc3
+[DEBUG] 2022-02-21 17:30:43.361 [RMI TCP Connection(3)-127.0.0.1] DispatcherServlet (542)  - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+[INFO ] 2022-02-21 17:30:43.361 [RMI TCP Connection(3)-127.0.0.1] DispatcherServlet (547)  - Completed initialization in 2 ms
+[DEBUG] 2022-02-21 17:30:51.780 [http-nio-8080-exec-2] DispatcherServlet (119)  - GET "/persons", parameters={}
+[DEBUG] 2022-02-21 17:30:51.787 [http-nio-8080-exec-2] RequestMappingHandlerMapping (522)  - Mapped to com.safetynet.alerts.controller.PersonsController#getListPersons()
+[INFO ] 2022-02-21 17:30:51.794 [http-nio-8080-exec-2] PersonsService (32)  - getListPersons SUCCESS :
+[INFO ] 2022-02-21 17:30:51.794 [http-nio-8080-exec-2] PersonsController (36)  - getListPersons GET demande réussie
+[DEBUG] 2022-02-21 17:30:51.800 [http-nio-8080-exec-2] RequestResponseBodyMethodProcessor (268)  - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+[DEBUG] 2022-02-21 17:30:51.801 [http-nio-8080-exec-2] RequestResponseBodyMethodProcessor (119)  - Writing [[John, Boyd, 1509 Culver St, Culver, 97451, 841-874-6512, jaboyd@email.com<EOL>, Jacob, Boyd, 1509 Culve (truncated)...]
+[DEBUG] 2022-02-21 17:30:51.810 [http-nio-8080-exec-2] DispatcherServlet (1131)  - Completed 200 OK
+[DEBUG] 2022-02-21 17:30:54.974 [http-nio-8080-exec-3] DispatcherServlet (119)  - POST "/person", parameters={}
+[DEBUG] 2022-02-21 17:30:54.975 [http-nio-8080-exec-3] RequestMappingHandlerMapping (522)  - Mapped to com.safetynet.alerts.controller.PersonsController#addPersonList(Persons)
+[DEBUG] 2022-02-21 17:30:54.982 [http-nio-8080-exec-3] RequestResponseBodyMethodProcessor (119)  - Read "application/json;charset=UTF-8" to [alpha, alpha, 22 rue deux, Ville, 22222, 333-222-2222, aaaabbbb@email.com<EOL>]
+[INFO ] 2022-02-21 17:30:54.986 [http-nio-8080-exec-3] PersonsService (52)  - Person saved SUCCESS :alpha, alpha, 22 rue deux, Ville, 22222, 333-222-2222, aaaabbbb@email.com
+
+[INFO ] 2022-02-21 17:30:54.986 [http-nio-8080-exec-3] PersonsController (51)  - addPerson POST demande réussie
+[DEBUG] 2022-02-21 17:30:54.987 [http-nio-8080-exec-3] RequestResponseBodyMethodProcessor (268)  - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+[DEBUG] 2022-02-21 17:30:54.987 [http-nio-8080-exec-3] RequestResponseBodyMethodProcessor (119)  - Writing [[John, Boyd, 1509 Culver St, Culver, 97451, 841-874-6512, jaboyd@email.com<EOL>, Jacob, Boyd, 1509 Culve (truncated)...]
+[DEBUG] 2022-02-21 17:30:54.988 [http-nio-8080-exec-3] DispatcherServlet (1131)  - Completed 200 OK
+[DEBUG] 2022-02-21 17:30:59.962 [http-nio-8080-exec-4] DispatcherServlet (119)  - DELETE "/person/alphaalpha", parameters={}
+[DEBUG] 2022-02-21 17:30:59.963 [http-nio-8080-exec-4] RequestMappingHandlerMapping (522)  - Mapped to com.safetynet.alerts.controller.PersonsController#deletePerson(String)
+[INFO ] 2022-02-21 17:30:59.965 [http-nio-8080-exec-4] PersonsController (76)  - deletePerson DELETE demande réussie
+[DEBUG] 2022-02-21 17:30:59.966 [http-nio-8080-exec-4] RequestResponseBodyMethodProcessor (268)  - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+[DEBUG] 2022-02-21 17:30:59.966 [http-nio-8080-exec-4] RequestResponseBodyMethodProcessor (119)  - Writing [true]
+[DEBUG] 2022-02-21 17:30:59.967 [http-nio-8080-exec-4] DispatcherServlet (1131)  - Completed 200 OK
+[INFO ] 2022-02-21 17:31:15.314 [RMI TCP Connection(5)-127.0.0.1] SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin (159)  - Application shutdown requested.
