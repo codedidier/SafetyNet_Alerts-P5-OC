@@ -1,4 +1,4 @@
-package com.safetynet.alerts.serviceTest;
+package com.safetynet.alerts.ageCalculatorTest;
 
 import static org.junit.Assert.assertEquals;
 
