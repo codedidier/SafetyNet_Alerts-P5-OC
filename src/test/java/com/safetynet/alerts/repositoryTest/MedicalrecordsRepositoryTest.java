@@ -126,8 +126,9 @@ public class MedicalrecordsRepositoryTest {
 
         // WHEN
         when(database.getMedicalrecords()).thenReturn(medicalrecords);
-        medicalrecordsRepository.getByFirstNameAndLastName("monPrenom", "monNom");
+        assertNull(medicalrecordsRepository.getByFirstNameAndLastName("monPrenom", "monNom"));
         // THEN
+        verify(database).getMedicalrecords();
         assertSame(medicalrecords, medicalrecordsRepository.getListMedicalrecords());
         assertThat(medicalrecordsRepository.getByFirstNameAndLastName("monPrenom", "monNom"));
     }

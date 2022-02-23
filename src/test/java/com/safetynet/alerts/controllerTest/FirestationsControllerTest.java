@@ -58,6 +58,22 @@ public class FirestationsControllerTest {
     }
 
     @Test
+    @DisplayName("Test erreur de la requête getListFirestations")
+    public void getListFirestationserror() throws Exception {
+
+        // GIVEN
+        Firestations firestations = new Firestations();
+        firestations.setAddress("8 MaRue");
+        firestations.setStation(8);
+        List<Firestations> firestationsList = new ArrayList<>();
+        firestationsList.add(firestations);
+
+        when(firestationsService.getListFirestations()).thenReturn(null);
+
+        mockMvc.perform(get("/persons")).andReturn();
+    }
+
+    @Test
     @DisplayName("Test du retour pour la demande addFirestationToList")
     public void addFirestationToList() throws Exception {
 
