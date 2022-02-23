@@ -10,9 +10,6 @@ import com.safetynet.alerts.Database;
 import com.safetynet.alerts.model.Firestations;
 import com.safetynet.alerts.repositoryInterface.FirestationsRepositoryInterface;
 
-import lombok.Data;
-
-@Data
 @Repository
 public class FirestationsRepository implements FirestationsRepositoryInterface {
 

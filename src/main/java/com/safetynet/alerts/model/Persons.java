@@ -2,9 +2,6 @@ package com.safetynet.alerts.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import lombok.Data;
-
-@Data
 public class Persons {
 
     private String firstName;
@@ -40,7 +37,6 @@ public class Persons {
         this.age = age;
         this.medicalrecords = medicalrecords;
         this.firestations = firestations;
-        this.firstNameAndLastName = firstNameAndLastName;
 
     }
 
@@ -131,11 +127,7 @@ public class Persons {
     public String getFirstNameAndLastName() {
 
         return firstName + lastName;
-    }
 
-    public void setFirstNameAndLastName(String firstNameAndLastName) {
-
-        this.firstNameAndLastName = firstNameAndLastName;
     }
 
     @Override

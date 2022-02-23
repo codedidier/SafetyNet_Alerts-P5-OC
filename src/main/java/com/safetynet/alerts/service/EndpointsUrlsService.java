@@ -7,7 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.safetynet.alerts.Exception.NoFoundException;
+import com.safetynet.alerts.Exception.NotFoundException;
 import com.safetynet.alerts.ageCalculator.ExtractAge;
 import com.safetynet.alerts.dto.ChildAlertDto;
 import com.safetynet.alerts.dto.ChildAlertWithAgeDto;
@@ -139,7 +139,7 @@ public class EndpointsUrlsService {
             log.info("listPersonsByAddressAndStationNumber OK :" + address);
             return new FireAddressDto(firestationNumber, listPersonsByAddress);
         } else {
-            throw new NoFoundException("listPersonsByAddressAndStationNumber Echec :" + address);
+            throw new NotFoundException("listPersonsByAddressAndStationNumber Echec :" + address);
         }
     }
 
