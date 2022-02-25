@@ -29,4 +29,8 @@ public interface PersonsRepositoryInterface {
 
 //Recherche Email par city pour les URLS
     List<Persons> getEmailByCity(String city);
+
+    void delete(Persons any);
+
+    void deletePersonToList(Persons capture);
 }

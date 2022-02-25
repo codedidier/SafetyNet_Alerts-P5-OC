@@ -16,7 +16,7 @@ public interface FirestationsServiceInterface {
     Firestations updateFirestationToList(Firestations firestations);
 
 //DELETE /firestation
-    List<Firestations> deleteFirestationToList(String address);
+    boolean deleteFirestationToList(String address);
 
 //URLS
     List<Firestations> getAddressByStation(int stationNumber);

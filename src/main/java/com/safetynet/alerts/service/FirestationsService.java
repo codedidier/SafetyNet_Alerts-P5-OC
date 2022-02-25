@@ -51,12 +51,28 @@ public class FirestationsService implements FirestationsServiceInterface {
     }
 
 //DELETE /firestation
-    @Override
-    public List<Firestations> deleteFirestationToList(String address) {
+//    @Override
+    // public List<Firestations> deleteFirestationToList(String address) {
 
-        log.info("deleteFirestationToList réussi :" + address);
-        firestationsRepositoryInterface.deleteFirestationToList(address);
-        return firestationsRepositoryInterface.getListFirestations();
+    // log.info("deleteFirestationToList réussi :" + address);
+//        firestationsRepositoryInterface.deleteFirestationToList(address);
+    // return firestationsRepositoryInterface.getListFirestations();
+    // }
+
+    // DELETE /firestation
+    @Override
+    public boolean deleteFirestationToList(String address) {
+
+        try {
+            List<Firestations> deleteFirestation = firestationsRepositoryInterface.getListFirestations();
+
+            return deleteFirestation.removeIf(firestation -> firestation.getAddress().equals(address));
+
+        } catch (Exception exception) {
+            log.error("deleteFirestationToList ERROR :" + exception.getMessage());
+        }
+        log.info("deleteFirestationToList SUCCESS :" + address);
+        return firestationsRepositoryInterface.getListFirestations() != null;
     }
 
 //URLS

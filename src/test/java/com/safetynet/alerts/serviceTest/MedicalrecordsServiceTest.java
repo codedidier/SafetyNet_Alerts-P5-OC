@@ -95,6 +95,7 @@ public class MedicalrecordsServiceTest {
     @Test
     @DisplayName("Test updateMedicalrecordToList")
     public void updateMedicalrecordToList() {
+
         // GIVEN
         Medicalrecords medicalrecords = new Medicalrecords();
         List<String> medications = new ArrayList<String>();

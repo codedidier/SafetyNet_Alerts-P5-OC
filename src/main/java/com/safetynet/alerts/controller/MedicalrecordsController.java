@@ -68,10 +68,10 @@ public class MedicalrecordsController {
 
     // Supprimer un dossier medical
     @DeleteMapping("/medicalRecord/{firstNameAndLastName}")
-    public void deleteMedicalrecord(@PathVariable String firstNameAndLastName) {
+    public boolean deleteMedicalrecord(@PathVariable String firstNameAndLastName) {
 
         log.info("deleteMedicalrecord DELETE request SUCCESSFUL");
-        medicalrecordsServiceInterface.deleteMedicalrecordToList(firstNameAndLastName);
+        return medicalrecordsServiceInterface.deleteMedicalrecordToList(firstNameAndLastName);
 
     }
 

@@ -48,12 +48,27 @@ public class PersonsService implements PersonsServiceInterface {
     }
 
 //DELETE //person
-    @Override
-    public List<Persons> deletePersonToList(String firstNameAndLastName) {
+    // @Override
+    // public List<Persons> deletePersonToList(String firstNameAndLastName) {
+//
+    // log.info("deletePersonToList REUSSIS :" + firstNameAndLastName);
+    // personsRepositoryInterface.deletePersonToList(firstNameAndLastName);
+    // return personsRepositoryInterface.getListPersons();
+    // }
 
-        log.info("deletePersonToList REUSSIS :" + firstNameAndLastName);
-        personsRepositoryInterface.deletePersonToList(firstNameAndLastName);
-        return personsRepositoryInterface.getListPersons();
+    // DELETE //person
+    @Override
+    public boolean deletePersonToList(String firstNameAndLastName) {
+
+        try {
+            List<Persons> deletePerson = personsRepositoryInterface.getListPersons();
+            return deletePerson.removeIf(person -> person.getFirstNameAndLastName().equals(firstNameAndLastName));
+
+        } catch (Exception exception) {
+            log.error("deletePersonToList ERROR :" + exception.getMessage());
+        }
+        log.info("deletePersonToList SUCCESS :" + firstNameAndLastName);
+        return personsRepositoryInterface.getListPersons() != null;
     }
 
 //URLS
@@ -86,5 +101,13 @@ public class PersonsService implements PersonsServiceInterface {
 
         log.info("getByEmailCity REUSSIS :" + city);
         return personsRepositoryInterface.getEmailByCity(city);
+    }
+
+    public void deletePerson(Persons personToDelete) {
+
+    }
+
+    public void deletePerson(Object mockPersons) {
+
     }
 }

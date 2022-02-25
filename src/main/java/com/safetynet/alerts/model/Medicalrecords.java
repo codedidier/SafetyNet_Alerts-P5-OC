@@ -16,8 +16,9 @@ public class Medicalrecords {
     @JsonIgnore
     private String firstNameAndLastName;
 
-    public Medicalrecords(String lastName, String birthdate, List<String> medications, List<String> allergies) {
-    }
+    // public Medicalrecords(String lastName, String birthdate, List<String>
+    // medications, List<String> allergies) {
+    // }
 
     public Medicalrecords() {
     }

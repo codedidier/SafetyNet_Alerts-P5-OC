@@ -16,7 +16,7 @@ public interface PersonsServiceInterface {
     Persons updatePersonToList(String firstNameAndLastName, Persons persons);
 
 //DELETE /person
-    List<Persons> deletePersonToList(String firstNameAndLastName);
+    boolean deletePersonToList(String firstNameAndLastName);
 
 //Recherche Address pour les URLS
     List<Persons> getByAddress(String address);

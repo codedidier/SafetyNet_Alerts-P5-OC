@@ -64,9 +64,9 @@ public class FirestationsController {
 
     // Supprimer une firestation
     @DeleteMapping(value = "/firestation/{address}")
-    public void deleteFirestation(@PathVariable String address) {
+    public boolean deleteFirestation(@PathVariable String address) {
 
         log.info("deleteFirestation DELETE demande rèussis");
-        firestationsServiceInterface.deleteFirestationToList(address);
+        return firestationsServiceInterface.deleteFirestationToList(address);
     }
 }

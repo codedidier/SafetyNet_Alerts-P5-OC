@@ -72,6 +72,11 @@ public class MedicalrecordsRepositoryTest {
         // GIVEN
         List<Medicalrecords> medicalrecordList = new ArrayList<Medicalrecords>();
 
+        Medicalrecords updateMedical = new Medicalrecords();
+        updateMedical.setBirthdate(null);
+        updateMedical.setMedications(null);
+        updateMedical.setAllergies(null);
+        medicalrecordList.add(updateMedical);
         // WHEN
         when(database.getMedicalrecords()).thenReturn(medicalrecordList);
         List<Medicalrecords> updateMedicalrecordToListResult = medicalrecordsRepository

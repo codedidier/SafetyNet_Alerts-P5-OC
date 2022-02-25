@@ -51,10 +51,17 @@ public class MedicalrecordsService implements MedicalrecordsServiceInterface {
 
 //DELETE /medicalRecord
     @Override
-    public void deleteMedicalrecordToList(String firstNameAndLastName) {
+    public boolean deleteMedicalrecordToList(String firstNameAndLastName) {
+        try {
+            List<Medicalrecords> deleteMedical = medicalrecordsRepositoryInterface.getListMedicalrecords();
+            return deleteMedical
+                    .removeIf(medicalrecords -> medicalrecords.getFirstNameAndLastName().equals(firstNameAndLastName));
 
-        List<Medicalrecords> deleteMedical = medicalrecordsRepositoryInterface.getListMedicalrecords();
-        deleteMedical.removeIf(medicalrecords -> medicalrecords.getFirstNameAndLastName().equals(firstNameAndLastName));
+        } catch (Exception exception) {
+            log.error("deletePersonToList ERROR :" + exception.getMessage());
+        }
+        log.info("deletePersonToList SUCCESS :" + firstNameAndLastName);
+        return medicalrecordsRepositoryInterface.getListMedicalrecords() != null;
     }
 
 //recherche par prenom et nom pour les URLS

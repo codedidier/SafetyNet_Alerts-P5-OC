@@ -70,9 +70,10 @@ public class PersonsRepository implements PersonsRepositoryInterface {
 
         List<Persons> deletePerson = database.getPersons();
         deletePerson.removeIf(persons -> persons.getFirstNameAndLastName().equals(firstNameAndLastName));
-    
-return;
-}
+
+        return;
+    }
+
 //Recherche par adresse pour les URLS
     @Override
     public List<Persons> getByAddress(String address) {
@@ -124,6 +125,16 @@ return;
             }
         }
         return listPersons;
+    }
+
+    @Override
+    public void delete(Persons any) {
+
+    }
+
+    @Override
+    public void deletePersonToList(Persons capture) {
+
     }
 
 }

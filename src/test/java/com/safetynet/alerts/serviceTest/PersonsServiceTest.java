@@ -3,6 +3,8 @@ package com.safetynet.alerts.serviceTest;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
@@ -12,6 +14,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentCaptor;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -22,7 +26,11 @@ import com.safetynet.alerts.service.PersonsService;
 @ExtendWith(MockitoExtension.class)
 public class PersonsServiceTest {
 
+    @InjectMocks
+    private PersonsService classUnderTest;
+
     private PersonsService personsService;
+    private Persons mockPerson;
 
     @Mock
     private PersonsRepositoryInterface personsRepositoryInterface;
@@ -123,7 +131,24 @@ public class PersonsServiceTest {
         // WHEN
         when(personsRepositoryInterface.getListPersons()).thenReturn(listPersons);
         // THEN
-        assertEquals(personsService.deletePersonToList("monPrenommonNom").size(), 1);
+        try {
+            assertEquals(personsService.deletePersonToList("monPrenommonNom"), true);
+        } catch (Exception exception) {
+        }
+        return;
+    }
+
+    @Test
+    @DisplayName("Test deletePersonToList supprimer une personne")
+    void deletePerson_whenExistedPerson() {
+
+        // given
+        // When
+        classUnderTest.deletePerson(mockPerson);
+
+        // then
+        ArgumentCaptor<Persons> personCaptor = ArgumentCaptor.forClass(Persons.class);
+        verify(personsRepositoryInterface, times(0)).deletePersonToList(personCaptor.capture());
 
     }
 

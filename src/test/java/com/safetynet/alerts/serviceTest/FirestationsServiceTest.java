@@ -88,7 +88,7 @@ public class FirestationsServiceTest {
 
     @Test
     @DisplayName("Test deleteFirestationToList avec une adresse")
-    public void deleteFirestationToList() {
+    public void deleteFirestationToListfalse() {
 
         // GIVEN
         Firestations firestations = new Firestations();
@@ -100,8 +100,27 @@ public class FirestationsServiceTest {
         firestationsRepositoryInterface.deleteFirestationToList("8 MaRue");
 
         // THEN
-        assertEquals(firestationsService.deleteFirestationToList("8 MaRue").size(), 0);
 
+        assertEquals(firestationsService.deleteFirestationToList("8 MaRue"), false);
+
+    }
+
+    @Test
+    @DisplayName("Test deleteFirestationToList avec une adresse")
+    public void deleteFirestationToListtrue() {
+
+        // GIVEN
+        Firestations firestations = new Firestations();
+        firestations.setAddress("8 MaRue");
+        firestations.setStation(8);
+        firestationsService.addFirestationToList(firestations);
+
+        // WHEN
+        firestationsRepositoryInterface.deleteFirestationToList("8 MaRue");
+
+        // THEN
+
+        assertEquals(firestationsService.deleteFirestationToList(null), false);
     }
 
     @Test

@@ -66,7 +66,7 @@ public class PersonsController {
 
     // Pour supprimer une personne
     @DeleteMapping(value = "/person/{firstNameAndLastName}")
-    public List<Persons> deletePerson(@PathVariable String firstNameAndLastName) {
+    public boolean deletePerson(@PathVariable String firstNameAndLastName) {
 
         log.info("deletePerson DELETE demande réussie");
         return personsServiceInterface.deletePersonToList(firstNameAndLastName);
