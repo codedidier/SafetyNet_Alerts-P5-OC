@@ -59,6 +59,7 @@ public class FirestationsServiceTest {
         Firestations firestations = new Firestations();
         firestations.setAddress("8 MaRue");
         firestations.setStation(8);
+        firestations.setPersons(null);
         List<Firestations> firestationsList = new ArrayList<Firestations>();
         firestationsList.add(firestations);
 
@@ -75,6 +76,7 @@ public class FirestationsServiceTest {
 
         // GIVEN
         Firestations firestations = new Firestations();
+        firestations.getPersons();
         firestations.setAddress("8 MaRue");
         firestations.setStation(8);
 

@@ -52,9 +52,9 @@ public class Firestations {
         return getAddress() + ", " + getStation() + "\n";
     }
 
-    public Firestations size() {
+    // public Firestations size() {
 
-        return null;
-    }
+    // return null;
+    // }
 
 }

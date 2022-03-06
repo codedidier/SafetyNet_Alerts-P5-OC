@@ -79,6 +79,8 @@ public class PersonsServiceTest {
         persons.setZip("88888");
         persons.setPhone("0600000000");
         persons.setEmail("monemail@gmail.com");
+        persons.setMedicalrecords(null);
+        persons.setFirestations(null);
         listPersons.add(persons);
 
         // WHEN

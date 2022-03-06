@@ -16,7 +16,7 @@ public interface MedicalrecordsRepositoryInterface {
     Medicalrecords updateMedicalrecordToList(String firstNameAndLastName, Medicalrecords medicalrecords);
 
 //DELETE medicalRecord
-    void deleteMedicalrecordToList(String firstNameAndLastName);
+    boolean deleteMedicalrecordToList(String firstNameAndLastName);
 
 //Recherche par prènom et nom pour les URLS
     Medicalrecords getByFirstNameAndLastName(String firstName, String lastName);

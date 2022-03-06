@@ -2,6 +2,7 @@ package com.safetynet.alerts.repositoryTest;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -31,6 +32,20 @@ public class MedicalrecordsRepositoryTest {
 
     @InjectMocks
     private MedicalrecordsRepository medicalrecordsRepository;
+
+    @Test
+    public void contextLoads() {
+        assertNotNull(medicalrecordsRepository);
+    }
+
+    @Test
+    public void getAllMedicalRecords() {
+        List<Medicalrecords> medicalRecords = database.getMedicalrecords();
+        List<Medicalrecords> medicalrecordsResult = medicalrecordsRepository.getListMedicalrecords();
+        assertNotNull(medicalRecords);
+        assertNotNull(medicalrecordsResult);
+        assertEquals(medicalrecordsResult, medicalRecords);
+    }
 
     @Test
     @DisplayName("Test getListMedicalrecords")
@@ -67,6 +82,19 @@ public class MedicalrecordsRepositoryTest {
     }
 
     @Test
+    public void addMedicalrecords() {
+        List<Medicalrecords> medicalRecords = database.getMedicalrecords();
+        List<String> medications = new ArrayList<>();
+        List<String> allergies = new ArrayList<>();
+        Medicalrecords medicalRecord = new Medicalrecords("monNom", "monPrenom", "01/01/2000", medications, allergies,
+                0, null);
+        List<Medicalrecords> medicalRecordResult = medicalrecordsRepository.addMedicalrecordToList(medicalRecord);
+        @SuppressWarnings("unlikely-arg-type")
+        boolean result = medicalRecords.contains(medicalRecordResult);
+        assertEquals(result, false);
+    }
+
+    @Test
     @DisplayName("Test UpdateMedicalRecordToList")
     public void updateMedicalrecordToListTest() throws ParseException {
         // GIVEN
@@ -92,6 +120,19 @@ public class MedicalrecordsRepositoryTest {
     }
 
     @Test
+    public void updateMedicalrecordToList() {
+        List<Medicalrecords> medicalRecords = database.getMedicalrecords();
+        List<String> medications = new ArrayList<>();
+        List<String> allergies = new ArrayList<>();
+        Medicalrecords medicalRecord = new Medicalrecords("monNommonPrenom", "01/01/2000", null, medications, allergies,
+                0, null);
+        List<Medicalrecords> medicalRecordResult = medicalrecordsRepository.addMedicalrecordToList(medicalRecord);
+        @SuppressWarnings("unlikely-arg-type")
+        boolean result = medicalRecords.contains(medicalRecordResult);
+        assertEquals(result, false);
+    }
+
+    @Test
     @DisplayName("Test DeleteMEdicalrecordList")
     public void deleteMedicalrecordListTest() {
         // GIVEN
@@ -106,6 +147,12 @@ public class MedicalrecordsRepositoryTest {
         List<Medicalrecords> getListMedicalrecords = medicalrecordsRepository.getListMedicalrecords();
         assertSame(medicalrecordList, getListMedicalrecords);
         assertTrue(getListMedicalrecords.isEmpty());
+    }
+
+    @Test
+    public void deleteMedicalRecords() {
+        boolean isRemoved = medicalrecordsRepository.deleteMedicalrecordToList("monPrenommonNom");
+        assertEquals(isRemoved, false);
     }
 
     @Test
@@ -136,5 +183,13 @@ public class MedicalrecordsRepositoryTest {
         verify(database).getMedicalrecords();
         assertSame(medicalrecords, medicalrecordsRepository.getListMedicalrecords());
         assertThat(medicalrecordsRepository.getByFirstNameAndLastName("monPrenom", "monNom"));
+    }
+
+    @Test
+    public void getByFirstNameAndLastName() {
+        List<Medicalrecords> medicalRecords = database.getMedicalrecords();
+        assertNotNull(medicalRecords);
+
+        equals(null);
     }
 }

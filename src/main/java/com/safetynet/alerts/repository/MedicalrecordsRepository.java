@@ -53,9 +53,9 @@ public class MedicalrecordsRepository implements MedicalrecordsRepositoryInterfa
 
 //DELETE /medicalRecord
     @Override
-    public void deleteMedicalrecordToList(String firstNameAndLastName) {
+    public boolean deleteMedicalrecordToList(String firstNameAndLastName) {
 
-        database.getMedicalrecords()
+        return database.getMedicalrecords()
                 .removeIf(medicalrecords -> medicalrecords.getFirstNameAndLastName().equals(firstNameAndLastName));
     }
 
